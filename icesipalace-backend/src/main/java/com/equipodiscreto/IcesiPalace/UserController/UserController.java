@@ -24,9 +24,8 @@ public class UserController {
 
     @PostMapping("/save")
     public String saveUser(@RequestBody UserDTO userDTO) {
-        System.out.println(userDTO);
-        String id = userService.addUser(userDTO);
-        return id;
+        String username = userService.addUser(userDTO);
+        return username;
     }
 
     @PostMapping("/login")

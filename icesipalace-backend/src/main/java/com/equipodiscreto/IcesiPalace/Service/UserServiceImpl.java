@@ -23,13 +23,18 @@ public class UserServiceImpl implements UserServiceInterface {
 
     @Override
     public String addUser(UserDTO userDTO) {
-        User user = new User(
-                userDTO.getUserID(),
-                userDTO.getUsername(),
-                userDTO.getEmail(),
-                this.passwordEncoder.encode(userDTO.getPassword()));
-        userRepository.save(user);
-        return user.getUsername();
+        User user1 = userRepository.findByEmail(userDTO.getEmail());
+        if (user1 != null) {
+            return "Email already exists";
+        } else {
+            User user = new User(
+                    userDTO.getUserID(),
+                    userDTO.getUsername(),
+                    userDTO.getEmail(),
+                    this.passwordEncoder.encode(userDTO.getPassword()));
+            userRepository.save(user);
+            return user.getUsername();
+        }
     }
 
     @Override
