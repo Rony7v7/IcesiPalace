@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
-    username: '',
     password: '',
   });
 
@@ -19,7 +18,7 @@ function Login() {
     console.log('Datos del formulario:', formData);
 
     // Realizar la solicitud HTTP POST
-    fetch('http://localhost:8080/api/v1/user', {
+    fetch('http://localhost:8080/api/v1/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,10 +43,6 @@ function Login() {
         <label>
           Email:
           <input type="text" name="email" value={formData.email} onChange={handleChange} />
-        </label>
-        <label>
-          Username:
-          <input type="text" name="username" value={formData.username} onChange={handleChange} />
         </label>
         <label>
           Password:
