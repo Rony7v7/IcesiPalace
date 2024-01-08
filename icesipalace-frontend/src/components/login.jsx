@@ -18,7 +18,7 @@ function Login() {
     console.log('Datos del formulario:', formData);
 
     // Realizar la solicitud HTTP POST
-    fetch('http://localhost:8080/api/v1/user', {
+    fetch('http://localhost:8080/api/v1/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
