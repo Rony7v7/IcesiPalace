@@ -1,9 +1,9 @@
 package com.equipodiscreto.IcesiPalace.Entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -18,10 +18,6 @@ import lombok.NoArgsConstructor;
 public class User {
 
     @Id
-    @Column(name = "aid", length = 45)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer userID;
-
     @Column(name = "username", length = 255)
     private String username;
 
@@ -31,4 +27,17 @@ public class User {
     @Column(name = "password", length = 255)
     private String password;
 
+    @Column(name = "phone_number", length = 255)
+    private String phone_numer;
+
+    @Column(name = "created_at", length = 255)
+    private LocalDateTime created_at;
+
+    //Contructor without phone_numer
+    public User(String username, String email, String password, LocalDateTime created_at) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.created_at = created_at;
+    }
 }

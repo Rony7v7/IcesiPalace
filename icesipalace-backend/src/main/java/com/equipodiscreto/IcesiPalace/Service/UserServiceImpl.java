@@ -1,5 +1,6 @@
 package com.equipodiscreto.IcesiPalace.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,10 +29,10 @@ public class UserServiceImpl implements UserServiceInterface {
             return "Email already exists";
         } else {
             User user = new User(
-                    userDTO.getUserID(),
                     userDTO.getUsername(),
                     userDTO.getEmail(),
-                    this.passwordEncoder.encode(userDTO.getPassword()));
+                    this.passwordEncoder.encode(userDTO.getPassword()),
+                    LocalDateTime.now());
             userRepository.save(user);
             return user.getUsername();
         }
