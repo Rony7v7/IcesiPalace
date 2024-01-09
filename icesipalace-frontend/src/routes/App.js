@@ -1,6 +1,15 @@
 import '../styles/App.css';
 import React, { useState } from 'react';
+import { Route, Router, Routes } from 'react-router-dom';
+
+// Importa las páginas
 import Login from '../components/Login';
+import Register from '../components/Register';
+import HomePage from '../components/HomePage';
+
+// Partials
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function App() {
 
@@ -18,15 +27,18 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {isLoggedIn ? (
-          <button onClick={handleLogout}>Cerrar sesión</button>
-        ) : (
-          <Login handleLogin={handleLogin} />
-        )}
-      </header>
-    </div>
+      <div>
+        <Header />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+
+
+        <Footer />
+      </div>
   );
 }
 
