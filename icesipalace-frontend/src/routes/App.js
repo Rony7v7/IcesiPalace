@@ -1,6 +1,8 @@
 import '../styles/App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import React, { useState } from 'react';
-import { Route, Router, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 // Importa las páginas
 import Login from '../components/Login';
@@ -30,12 +32,11 @@ function App() {
       <div>
         <Header />
 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
 
         <Footer />
       </div>
