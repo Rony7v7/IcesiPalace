@@ -8,15 +8,33 @@ import axios from './api/axios';
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
-const Register = () => { 
-    const userRef = userRef();
-    const err
-    retunr (
-        <div>
 
-        </div>
-    )
+const Register = () => {
+
+    // Estos son los estados que se usan para validar el nombre de usuario
+    const userRef = useRef();
+    const errRef = useRef();
+
+    const [user, setUser] = useState('');
+    const [validName, setValidName] = useState(false);
+    const [userFocus, setUserFocus] = useState(false);
+
+    const [pwd, setPwd] = useState('');
+    const [validPwd, setValidPwd] = useState(false);
+    const [pwdFocus, setPwdFocus] = useState(false);
+
+    const [matchPwd, setMatchPwd] = useState('');
+    const [validMatch, setValidMatch] = useState(false);
+    const [matchFocus, setMatchFocus] = useState(false);
+
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
+
+    // Esta funcion se encarga de validar el nombre de usuario
+    useEffect(() => {
+        userRef.current.focus();
+    }, [])
+
 }
 
-
-
+export default Register
