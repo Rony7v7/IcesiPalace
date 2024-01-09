@@ -1,6 +1,3 @@
-import '../styles/App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
