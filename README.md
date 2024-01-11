@@ -25,12 +25,7 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  npm i --save @fortawesome/fontawesome-svg-core
-  npm install --save @fortawesome/free-solid-svg-icons 
-  npm install --save @fortawesome/react-fontawesome
-  npm install react-router-dom
-  npm install reactstrap react react-dom
-  npm install --save bootstrap
+  npm install
 ```
 
 Start the server
