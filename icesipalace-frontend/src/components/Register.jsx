@@ -1,10 +1,10 @@
 import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import axios from './api/axios';
-// import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import axios from './api/axios';
+import axios from './api/axios';
+import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from './api/axios';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -22,13 +22,13 @@ const Register = () => {
 
 
     // These are the states for the username input
-    
+
     //  This is the state for the username input
     const [user, setUser] = useState('');
 
     //  This is the state that controls if the username is valid or not
     const [validName, setValidName] = useState(false);
-    
+
     //   This is the state that controls if this component is in focus or not
     const [userFocus, setUserFocus] = useState(false);
 
@@ -58,8 +58,8 @@ const Register = () => {
 
     // In this case the user state is the dependency, so when the user state changes, the validation is executed
     useEffect(() => {
-         // This is the validation, it is a regex test that consist of 
-         // a letter, followed by 3 to 23 letters, numbers, underscores or hyphens
+        // This is the validation, it is a regex test that consist of 
+        // a letter, followed by 3 to 23 letters, numbers, underscores or hyphens
         setValidName(USER_REGEX.test(user));
     }, [user])
 
@@ -82,46 +82,179 @@ const Register = () => {
         setErrMsg(''); // clear error message
     }, [user, pwd, matchPwd])
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     // if button enabled with JS hack
-    //     const v1 = USER_REGEX.test(user);
-    //     const v2 = PWD_REGEX.test(pwd);
-    //     if (!v1 || !v2) {
-    //         setErrMsg("Invalid Entry");
-    //         return;
-    //     }
-    //     try {
-    //         const response = await axios.post(REGISTER_URL,
-    //             JSON.stringify({ user, pwd }),
-    //             {
-    //                 headers: { 'Content-Type': 'application/json' },
-    //                 withCredentials: true
-    //             }
-    //         );
-    //         console.log(response?.data);
-    //         console.log(response?.accessToken);
-    //         console.log(JSON.stringify(response))
-    //         setSuccess(true);
-    //         //clear state and controlled inputs
-    //         //need value attrib on inputs for this
-    //         setUser('');
-    //         setPwd('');
-    //         setMatchPwd('');
-    //     } catch (err) {
-    //         if (!err?.response) {
-    //             setErrMsg('No Server Response');
-    //         } else if (err.response?.status === 409) {
-    //             setErrMsg('Username Taken');
-    //         } else {
-    //             setErrMsg('Registration Failed')
-    //         }
-    //         errRef.current.focus();
-    //     }
-    // }
+    // This is the function that is called when the form is submitted
+    const handleSubmit = async (e) => {
+        // prevent default form submission
+        e.preventDefault();
+
+        // if button enabled with JS hack then submit form
+
+        // validate user and pwd
+        const v1 = USER_REGEX.test(user);
+        const v2 = PWD_REGEX.test(pwd);
+
+        // if either is invalid then set error message and return
+        if (!v1 || !v2) {
+            setErrMsg("Invalid Entry");
+            return;
+        }
+
+        
+        try {
+            const response = await axios.post(REGISTER_URL,
+                JSON.stringify({ user, pwd }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+            console.log(response?.data);
+            console.log(response?.accessToken);
+            console.log(JSON.stringify(response))
+            setSuccess(true);
+            //clear state and controlled inputs
+            //need value attrib on inputs for this
+            setUser('');
+            setPwd('');
+            setMatchPwd('');
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 409) {
+                setErrMsg('Username Taken');
+            } else {
+                setErrMsg('Registration Failed')
+            }
+            errRef.current.focus();
+        }
+    }
+
 
     return (
         <>
+            {success ? (
+                <section>
+                    <h1>Success!</h1>
+                    <p>
+                        <a href="#">Sign In</a>
+                    </p>
+                </section>
+            ) : (
+                <section>
+                    {/* This is an error message that is only visible when there is an error cause of the ternary operator */}
+                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+
+                    <h1>Register</h1>
+
+                    {/* This is the form that is submitted when the submit button is clicked 
+                    The handleSubmit function is called when the form is submitted
+                    */}
+                    <form onSubmit={handleSubmit}> 
+
+                        <label htmlFor="username">
+                            Username:
+                            <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} /> {/* This is the check icon that is only visible when the username is valid */}
+                            <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> {/* This is the x icon that is only visible when the username is invalid */}
+                        </label>
+
+                        <input
+                            type="text"
+                            id="username"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setUser(e.target.value)} // This is the function that changes the state of the username input
+                            value={user}
+                            required
+                            aria-invalid={validName ? "false" : "true"}
+                            aria-describedby="uidnote" // This is the id of the error message that is only visible when the input is in focus and the username is invalid
+                            onFocus={() => setUserFocus(true)} // This is the function that changes the state of the username input focus
+                            onBlur={() => setUserFocus(false)} // This is the function that changes the state of the username input focus
+                        />
+
+                        {/* This is the error message that is only visible when the input is in focus and the username is invalid */}
+                        <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                            4 to 24 characters.<br />
+                            Must begin with a letter.<br />
+                            Letters, numbers, underscores, hyphens allowed.
+                        </p>
+
+                        {/* This is the password label*/}
+                        <label htmlFor="password">
+                            Password:
+                            <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
+                        </label>
+
+                        {/* This is the password input field */}
+                        <input
+                            type="password"
+                            id="password"
+                            onChange={(e) => setPwd(e.target.value)} // This is the function that changes the state of the password input
+                            value={pwd}
+                            required
+                            aria-invalid={validPwd ? "false" : "true"}
+                            aria-describedby="pwdnote"
+                            onFocus={() => setPwdFocus(true)}
+                            onBlur={() => setPwdFocus(false)}
+                        />
+
+                        {/* This is the error message that is only visible when the input is in focus and the password is invalid */}
+                        <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                            8 to 24 characters.<br />
+                            Must include uppercase and lowercase letters, a number and a special character.<br />
+
+                            {/* This indicates the special characteres accepted */}
+                            Allowed special characters: 
+                            <span aria-label="exclamation mark">!</span> 
+                            <span aria-label="at symbol">@</span> 
+                            <span aria-label="hashtag">#</span> 
+                            <span aria-label="dollar sign">$</span> 
+                            <span aria-label="percent">%</span>
+                        </p>
+
+                        {/* This is the confirm password label*/}
+                        <label htmlFor="confirm_pwd">
+                            Confirm Password:
+                            <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} />
+                        </label>
+
+                        {/* This is the confirm password input field */}
+                        <input
+                            type="password"
+                            id="confirm_pwd"
+                            onChange={(e) => setMatchPwd(e.target.value)}
+                            value={matchPwd}
+                            required
+                            aria-invalid={validMatch ? "false" : "true"}
+                            aria-describedby="confirmnote"
+                            onFocus={() => setMatchFocus(true)}
+                            onBlur={() => setMatchFocus(false)}
+                        />
+                            
+                        {/* This is the error message that is only visible when the input is in focus and the confirm password is invalid */}
+                        <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                            Must match the first password input field.
+                        </p>
+
+                        {/* This is the submit button that is only enabled when the username, password and confirm password are valid */}    
+                        <button disabled={!validName || !validPwd || !validMatch ? true : false}>
+                            Sign Up
+                        </button>
+                    
+                    </form>
+                    <p>
+                        Already registered?<br />
+                        <span className="line">
+                            {/* TODO: PUT THE ROUTER LINK TO THE SIGN IN PAGE HERE */}  
+                            <a href="#">Sign In</a>
+                        </span>
+                    </p>
+                </section>
+            )}
         </>
     )
 }
