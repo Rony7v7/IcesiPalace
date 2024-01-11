@@ -2,13 +2,10 @@ import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from './api/axios';
-import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from './api/axios';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = '/register';
+const REGISTER_URL = '/api/v1/user/save';
 
 const Register = () => {
 
@@ -99,7 +96,6 @@ const Register = () => {
             return;
         }
 
-        
         try {
             const response = await axios.post(REGISTER_URL,
                 JSON.stringify({ user, pwd }),
@@ -136,6 +132,7 @@ const Register = () => {
                 <section>
                     <h1>Success!</h1>
                     <p>
+                    {/* TODO: PUT THE ROUTER LINK TO THE SIGN IN PAGE HERE */}  
                         <a href="#">Sign In</a>
                     </p>
                 </section>
