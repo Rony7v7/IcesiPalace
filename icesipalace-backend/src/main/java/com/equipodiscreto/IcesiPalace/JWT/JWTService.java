@@ -1,5 +1,6 @@
 package com.equipodiscreto.IcesiPalace.JWT;
 
+import io.jsonwebtoken.io.Decoders;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ import java.util.function.Function;
 @Service
 public class JWTService {
 
-    private final String SECRET_KEY = "338a0a36b6cbefc6454bebd66948cecb6874982dfed0f933ec95fc91556f3766";
+    private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
     public String getToken(UserDetails user) {
         return getToken(new HashMap<>(), user);
@@ -30,28 +31,25 @@ public class JWTService {
                 .setSubject(((User) user).getEmail())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 7))
-                .signWith(getKey(), SignatureAlgorithm.HS512)
+                .signWith(SECRET_KEY, SignatureAlgorithm.HS512)
                 .compact();
     }
 
-    private Key getKey() {
-        byte[] keyBytes = SECRET_KEY.getBytes();
-        return Keys.hmacShaKeyFor(keyBytes);
-    }
+
 
     public String getEmailFromToken(String token) {
         return getClaim(token, Claims::getSubject);
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String username = getEmailFromToken(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        final String email = getEmailFromToken(token);
+        return (email.equals(((User) userDetails).getEmail()) && !isTokenExpired(token));
     }
 
     private Claims getAllClaims(String token) {
         return Jwts
                 .parserBuilder()
-                .setSigningKey(getKey())
+                .setSigningKey(SECRET_KEY)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
