@@ -98,7 +98,7 @@ function HomePage() {
             </nav>
             <div className="products-section">
                 <div className="products-header">
-                    <span className="products-title">Productos</span>
+                    <span className="products-title">Sugerencias para ti</span>
                 </div>
                 <div className="products">
                     {products.map(product => (
