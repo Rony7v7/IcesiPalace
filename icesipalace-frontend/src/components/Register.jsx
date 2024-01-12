@@ -2,9 +2,12 @@ import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../api/axios';
+import '../styles/Register/register.css';
+
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const EMAIL_REGEX = /@.*\./;
 const REGISTER_URL = '/api/v1/user/save';
 
 const Register = () => {
@@ -34,6 +37,11 @@ const Register = () => {
     const [pwd, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
     const [pwdFocus, setPwdFocus] = useState(false);
+
+    // These are the states for the email input, the same as the username input
+    const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
 
     // These are the states for the confirm password input, the same as the username input
     const [matchPwd, setMatchPwd] = useState('');
@@ -72,12 +80,18 @@ const Register = () => {
         setValidMatch(pwd === matchPwd);
     }, [pwd, matchPwd])
 
+    // In this case the email state is the dependency, so when the email state changes, the validation is executed
+    useEffect(() => {
+        // This is the validation, it is a regex test that consist of
+        // an email with an @ and a .
+        setValidEmail(EMAIL_REGEX.test(email));
+    }, [email])
 
-    // In this case the user, pwd and matchPwd states are the dependencies, so when
+    // In this case the user, pwd, email and matchPwd states are the dependencies, so when
     // the user, pwd or matchPwd states change, the error message is cleared
     useEffect(() => {
         setErrMsg(''); // clear error message
-    }, [user, pwd, matchPwd])
+    }, [user, pwd, matchPwd, email])
 
     // This is the function that is called when the form is submitted
     const handleSubmit = async (e) => {
@@ -96,9 +110,11 @@ const Register = () => {
             return;
         }
 
+        setSuccess(true);
+
         try {
             const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ user, pwd }),
+                JSON.stringify({ user, pwd , email}),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -127,13 +143,12 @@ const Register = () => {
 
 
     return (
-        <>
+        <div className="Register">
             {success ? (
                 <section>
                     <h1>Success!</h1>
                     <p>
-                    {/* TODO: PUT THE ROUTER LINK TO THE SIGN IN PAGE HERE */}  
-                        <a href="#">Sign In</a>
+                        <a href="/login">Sign In</a>
                     </p>
                 </section>
             ) : (
@@ -174,6 +189,31 @@ const Register = () => {
                             4 to 24 characters.<br />
                             Must begin with a letter.<br />
                             Letters, numbers, underscores, hyphens allowed.
+                        </p>
+
+                        <label htmlFor="email">
+                            Email:
+                            <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} /> {/* This is the check icon that is only visible when the username is valid */}
+                            <FontAwesomeIcon icon={faTimes} className={validEmail || !user ? "hide" : "invalid"} /> {/* This is the x icon that is only visible when the username is invalid */}
+                        </label>
+
+                        <input
+                            type="text"
+                            id="email"
+                            ref={userRef}
+                            autoComplete="on"
+                            onChange={(e) => setEmail(e.target.value)} // This is the function that changes the state of the username input
+                            value={email}
+                            required
+                            aria-invalid={validEmail ? "false" : "true"}
+                            aria-describedby="emailnote" // This is the id of the error message that is only visible when the input is in focus and the username is invalid
+                            onFocus={() => setEmailFocus(true)} // This is the function that changes the state of the username input focus
+                            onBlur={() => setEmailFocus(false)} // This is the function that changes the state of the username input focus
+                        />
+
+                        <p id="emailnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                            Must contain an @ and a .<br />
                         </p>
 
                         {/* This is the password label*/}
@@ -238,7 +278,7 @@ const Register = () => {
                         </p>
 
                         {/* This is the submit button that is only enabled when the username, password and confirm password are valid */}    
-                        <button disabled={!validName || !validPwd || !validMatch ? true : false}>
+                        <button disabled={!validName || !validPwd || !validMatch  || !validEmail} type="submit">
                             Sign Up
                         </button>
                     
@@ -246,13 +286,12 @@ const Register = () => {
                     <p>
                         Already registered?<br />
                         <span className="line">
-                            {/* TODO: PUT THE ROUTER LINK TO THE SIGN IN PAGE HERE */}  
-                            <a href="#">Sign In</a>
+                            <a href="/login">Sign In</a>
                         </span>
                     </p>
                 </section>
             )}
-        </>
+        </div>
     )
 }
 
