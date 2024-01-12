@@ -1,25 +1,30 @@
 .product {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: start;
 	justify-content: center;
 	width: 200px;
 	height: 250px;
 	margin: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	box-shadow: 0 0 10px #ccc;
+	margin-bottom: 25px;
 	transition: 0.3s;
 	cursor: pointer;
 }
 
-.product:hover {
-	box-shadow: 0 0 20px #f72b2b;
+.product-image:hover {
+	box-shadow: 0 0 20px #4e4e4e4b;
 }
 
-.product img {
+.product-image {
 	width: 100%;
 	height: 80%;
-	object-fit: cover;
-	background-image: url("https://co.pinterest.com/pin/1092263715862611508/");
+	border-radius: 10px;
 }
+
+.product-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 10px;
+}
+
