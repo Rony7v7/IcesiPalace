@@ -8,6 +8,7 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
+import "../styles/Header.css";
 
 function Header(args) {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,7 @@ function Header(args) {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
+    <div className=''>
       <Navbar {...args}>
         <NavbarBrand href="/">Icesi Palace</NavbarBrand>
         <NavbarToggler onClick={toggle} />
