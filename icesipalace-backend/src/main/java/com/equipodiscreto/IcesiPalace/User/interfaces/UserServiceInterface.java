@@ -1,4 +1,4 @@
-package com.equipodiscreto.IcesiPalace.Service.interfaces;
+package com.equipodiscreto.IcesiPalace.User.interfaces;
 
 import com.equipodiscreto.IcesiPalace.Dto.LoginDTO;
 import com.equipodiscreto.IcesiPalace.Dto.UserDTO;

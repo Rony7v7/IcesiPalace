@@ -1,15 +1,13 @@
-package com.equipodiscreto.IcesiPalace.Service;
+package com.equipodiscreto.IcesiPalace.Post;
 
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 
 import com.equipodiscreto.IcesiPalace.Dto.PostDTO;
-import com.equipodiscreto.IcesiPalace.Entity.Category;
-import com.equipodiscreto.IcesiPalace.Entity.Post;
 import com.equipodiscreto.IcesiPalace.PayloadResponse.PostMessage;
-import com.equipodiscreto.IcesiPalace.Repository.PostRepository;
-import com.equipodiscreto.IcesiPalace.Service.interfaces.PostServiceInterface;
+import com.equipodiscreto.IcesiPalace.Post.enums.Category;
+import com.equipodiscreto.IcesiPalace.Post.interfaces.PostServiceInterface;
 
 import lombok.AllArgsConstructor;
 

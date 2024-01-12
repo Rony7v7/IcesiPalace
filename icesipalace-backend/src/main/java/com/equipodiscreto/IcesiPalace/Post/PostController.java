@@ -1,4 +1,4 @@
-package com.equipodiscreto.IcesiPalace.UserController;
+package com.equipodiscreto.IcesiPalace.Post;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.equipodiscreto.IcesiPalace.Dto.PostDTO;
 import com.equipodiscreto.IcesiPalace.PayloadResponse.PostMessage;
-import com.equipodiscreto.IcesiPalace.Service.interfaces.PostServiceInterface;
+import com.equipodiscreto.IcesiPalace.Post.interfaces.PostServiceInterface;
 
 import lombok.AllArgsConstructor;
 

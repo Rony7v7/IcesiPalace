@@ -1,4 +1,4 @@
-package com.equipodiscreto.IcesiPalace.UserController;
+package com.equipodiscreto.IcesiPalace.User;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.equipodiscreto.IcesiPalace.Dto.LoginDTO;
 import com.equipodiscreto.IcesiPalace.Dto.UserDTO;
 import com.equipodiscreto.IcesiPalace.PayloadResponse.LoginMessage;
-import com.equipodiscreto.IcesiPalace.Service.interfaces.UserServiceInterface;
+import com.equipodiscreto.IcesiPalace.User.interfaces.UserServiceInterface;
 
 import lombok.AllArgsConstructor;
 

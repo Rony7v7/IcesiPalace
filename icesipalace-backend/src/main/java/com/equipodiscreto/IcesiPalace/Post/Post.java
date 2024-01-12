@@ -1,9 +1,13 @@
-package com.equipodiscreto.IcesiPalace.Entity;
+package com.equipodiscreto.IcesiPalace.Post;
 
 import java.time.LocalDateTime;
 
+import com.equipodiscreto.IcesiPalace.Post.enums.Category;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -39,9 +43,9 @@ public class Post {
     private LocalDateTime created_at;
 
     @Column(length = 255, name = "category")
+    @Enumerated(EnumType.STRING)
     private Category category;
 
-    // contructor without id
     public Post(String title, String description, String user_id, String image, LocalDateTime created_at,
             Category category) {
         this.title = title;

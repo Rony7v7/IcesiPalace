@@ -1,4 +1,4 @@
-package com.equipodiscreto.IcesiPalace.Service;
+package com.equipodiscreto.IcesiPalace.User;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.equipodiscreto.IcesiPalace.Dto.LoginDTO;
 import com.equipodiscreto.IcesiPalace.Dto.UserDTO;
-import com.equipodiscreto.IcesiPalace.Entity.User;
 import com.equipodiscreto.IcesiPalace.PayloadResponse.LoginMessage;
-import com.equipodiscreto.IcesiPalace.Repository.UserRepository;
-import com.equipodiscreto.IcesiPalace.Service.interfaces.UserServiceInterface;
+import com.equipodiscreto.IcesiPalace.User.interfaces.UserServiceInterface;
 
 import lombok.AllArgsConstructor;
 

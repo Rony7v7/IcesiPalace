@@ -1,9 +1,7 @@
-package com.equipodiscreto.IcesiPalace.Repository;
+package com.equipodiscreto.IcesiPalace.Post;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.equipodiscreto.IcesiPalace.Entity.Post;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 

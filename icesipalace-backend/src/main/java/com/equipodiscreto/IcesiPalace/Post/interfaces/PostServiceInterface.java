@@ -1,4 +1,4 @@
-package com.equipodiscreto.IcesiPalace.Service.interfaces;
+package com.equipodiscreto.IcesiPalace.Post.interfaces;
 
 import com.equipodiscreto.IcesiPalace.Dto.PostDTO;
 import com.equipodiscreto.IcesiPalace.PayloadResponse.PostMessage;

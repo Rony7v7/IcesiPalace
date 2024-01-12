@@ -1,4 +1,4 @@
-package com.equipodiscreto.IcesiPalace.Entity;
+package com.equipodiscreto.IcesiPalace.User;
 
 import java.time.LocalDateTime;
 
