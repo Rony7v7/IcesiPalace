@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import org.springframework.stereotype.Service;
 
 import com.equipodiscreto.IcesiPalace.Dto.PostDTO;
-import com.equipodiscreto.IcesiPalace.PayloadResponse.PostMessage;
 import com.equipodiscreto.IcesiPalace.Post.enums.Category;
 import com.equipodiscreto.IcesiPalace.Post.interfaces.PostServiceInterface;
 

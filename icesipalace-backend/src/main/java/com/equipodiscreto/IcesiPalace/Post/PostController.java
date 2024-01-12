@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.equipodiscreto.IcesiPalace.Dto.PostDTO;
-import com.equipodiscreto.IcesiPalace.PayloadResponse.PostMessage;
 import com.equipodiscreto.IcesiPalace.Post.interfaces.PostServiceInterface;
 
 import lombok.AllArgsConstructor;

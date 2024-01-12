@@ -1,4 +1,4 @@
-package com.equipodiscreto.IcesiPalace.PayloadResponse;
+package com.equipodiscreto.IcesiPalace.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,12 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class PostMessage {
-
-    private String message;
-    private Boolean status;
-
+public class AuthResponse {
+    String token;
+    boolean status;
 }

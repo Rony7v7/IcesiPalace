@@ -1,7 +1,7 @@
 package com.equipodiscreto.IcesiPalace.Post.interfaces;
 
 import com.equipodiscreto.IcesiPalace.Dto.PostDTO;
-import com.equipodiscreto.IcesiPalace.PayloadResponse.PostMessage;
+import com.equipodiscreto.IcesiPalace.Post.PostMessage;
 
 public interface PostServiceInterface {
     PostMessage addPost(PostDTO postDTO);
