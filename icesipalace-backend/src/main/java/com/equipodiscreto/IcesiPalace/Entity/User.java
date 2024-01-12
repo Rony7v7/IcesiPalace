@@ -17,10 +17,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class User {
 
-    @Id
     @Column(name = "username", length = 255)
     private String username;
-
+    
+    @Id
     @Column(name = "email", length = 255)
     private String email;
 
@@ -33,7 +33,6 @@ public class User {
     @Column(name = "created_at", length = 255)
     private LocalDateTime created_at;
 
-    //Contructor without phone_numer
     public User(String username, String email, String password, LocalDateTime created_at) {
         this.username = username;
         this.email = email;
