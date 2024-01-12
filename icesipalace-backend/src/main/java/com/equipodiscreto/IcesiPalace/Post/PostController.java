@@ -1,11 +1,7 @@
 package com.equipodiscreto.IcesiPalace.Post;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.equipodiscreto.IcesiPalace.Dto.PostDTO;
 import com.equipodiscreto.IcesiPalace.Post.interfaces.PostServiceInterface;
@@ -22,6 +18,16 @@ public class PostController {
     @PostMapping("/create")
     private ResponseEntity<?> createPost(@RequestBody PostDTO postDTO) {
         PostMessage serverResponser = postService.addPost(postDTO);
+        return ResponseEntity.ok(serverResponser);
+    }
+
+    @GetMapping("list-all-post")
+    public ResponseEntity<PostMessage> listAllPost(){
+        PostMessage serverResponser = PostMessage.builder()
+                .message("SUCCESS")
+                .posts(postService.listAllPost())
+                .status(true)
+                .build();
         return ResponseEntity.ok(serverResponser);
     }
 }

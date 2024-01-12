@@ -1,7 +1,10 @@
 package com.equipodiscreto.IcesiPalace.Post.interfaces;
 
 import com.equipodiscreto.IcesiPalace.Dto.PostDTO;
+import com.equipodiscreto.IcesiPalace.Post.Post;
 import com.equipodiscreto.IcesiPalace.Post.PostMessage;
+
+import java.util.List;
 
 public interface PostServiceInterface {
     PostMessage addPost(PostDTO postDTO);
@@ -18,4 +21,5 @@ public interface PostServiceInterface {
 
     PostMessage getPostsByCategory();
 
+    List<Post> listAllPost();
 }

@@ -1,6 +1,7 @@
 package com.equipodiscreto.IcesiPalace.Post;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,10 @@ public class PostServiceImpl implements PostServiceInterface {
                 LocalDateTime.now(),
                 Category.valueOf(postDTO.getCategory()));
         postRepository.save(post);
-        return new PostMessage("Post created", true);
+        return PostMessage.builder()
+                .posts(List.of(post))
+                .status(true)
+                .build();
     }
 
     @Override
@@ -63,6 +67,11 @@ public class PostServiceImpl implements PostServiceInterface {
     public PostMessage getPostsByCategory() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPostsByCategory'");
+    }
+
+    @Override
+    public List<Post> listAllPost() {
+        return postRepository.findAll();
     }
 
 }

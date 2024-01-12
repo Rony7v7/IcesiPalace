@@ -2,6 +2,7 @@ package com.equipodiscreto.IcesiPalace.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,8 +28,11 @@ public class SecurityConfig {
                 .csrf(crsf -> crsf.disable())
                 .authorizeHttpRequests(
                         authRequest -> {
-                            authRequest.requestMatchers("/auth/**")
+                            authRequest
+                                    .requestMatchers(
+                                    "/auth/**")
                                     .permitAll()
+                                    .requestMatchers(HttpMethod.GET).permitAll()
                                     .anyRequest().authenticated();
                         })
                 .sessionManagement(sessionManagement -> sessionManagement

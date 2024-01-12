@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class PostMessage {
 
     private String message;
+    private List<Post> posts;
     private Boolean status;
 
 }
