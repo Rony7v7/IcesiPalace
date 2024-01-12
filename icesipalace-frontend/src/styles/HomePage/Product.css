@@ -1,0 +1,25 @@
+.product {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 200px;
+	height: 250px;
+	margin: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 0 10px #ccc;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.product:hover {
+	box-shadow: 0 0 20px #f72b2b;
+}
+
+.product img {
+	width: 100%;
+	height: 80%;
+	object-fit: cover;
+	background-image: url("https://co.pinterest.com/pin/1092263715862611508/");
+}

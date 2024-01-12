@@ -35,7 +35,7 @@ function Login () {
         console.error('Error en la solicitud:', error);
       });
   };
-
+ 
   return (
     <div className="login">
       <h1>Login</h1>

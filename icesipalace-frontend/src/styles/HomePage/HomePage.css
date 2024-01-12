@@ -1,0 +1,39 @@
+.home-page {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: auto;
+    background-color: #1a1a1a;
+    color: white;
+}
+
+.products-section {
+    display: flex;
+    flex-direction: column;
+    width: 100vh;
+
+    
+
+    /* bg  */
+    background-color: #7fa8d659;
+
+
+}
+
+.products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
