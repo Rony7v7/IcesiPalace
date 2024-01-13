@@ -12,6 +12,7 @@ import com.equipodiscreto.IcesiPalace.Dto.PostDTO;
 import com.equipodiscreto.IcesiPalace.FileSaver.FileSaverUtil;
 import com.equipodiscreto.IcesiPalace.Post.enums.Category;
 import com.equipodiscreto.IcesiPalace.Post.interfaces.PostServiceInterface;
+import com.equipodiscreto.IcesiPalace.User.User;
 
 import lombok.AllArgsConstructor;
 
@@ -25,12 +26,13 @@ public class PostServiceImpl implements PostServiceInterface {
     @Override
     public PostMessage addPost(PostDTO postDTO) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
         Post post;
         try {
             post = new Post(
                     postDTO.getTitle(),
                     postDTO.getDescription(),
-                    auth.getName(),
+                    user.getEmail(),
                     fileSaverUtil.uploadFile(postDTO.getImage()),
                     LocalDateTime.now(),
                     postDTO.getPrice(),

@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 public class PostDTO {
     private String title;
     private String description;
-    private String user_email;
     private MultipartFile image;
     private Double price;
     private String category;

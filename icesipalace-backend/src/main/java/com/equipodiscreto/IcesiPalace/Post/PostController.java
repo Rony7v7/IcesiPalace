@@ -16,13 +16,13 @@ public class PostController {
     private PostServiceInterface postService;
 
     @PostMapping("/create")
-    private ResponseEntity<?> createPost(@RequestBody PostDTO postDTO) {
+    private ResponseEntity<?> createPost(@ModelAttribute PostDTO postDTO) {
         PostMessage serverResponser = postService.addPost(postDTO);
         return ResponseEntity.ok(serverResponser);
     }
 
     @GetMapping("list-all-post")
-    public ResponseEntity<PostMessage> listAllPost(){
+    public ResponseEntity<PostMessage> listAllPost() {
         PostMessage serverResponser = PostMessage.builder()
                 .message("SUCCESS")
                 .posts(postService.listAllPost())

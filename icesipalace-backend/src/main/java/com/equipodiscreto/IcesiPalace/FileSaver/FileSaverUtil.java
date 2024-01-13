@@ -21,11 +21,9 @@ import lombok.AllArgsConstructor;
 @Service
 public class FileSaverUtil {
 
-    @Value("${BUCKET_NAME}")
-    private final String BUCKET_NAME;
+    private final String BUCKET_NAME = System.getenv("BUCKET_NAME");
 
-    @Value("${PROJECT_ID}")
-    private final String PROJECT_ID;
+    private final String PROJECT_ID = System.getenv("PROJECT_ID");
 
     public String uploadFile(@RequestBody MultipartFile file) throws IOException {
         StorageOptions options = StorageOptions.newBuilder()
