@@ -1,42 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 .Register {
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
 
-    font-family: 'Nunito', sans-serif;
-    font-size: 22px;
-    color: #fff;
-    min-height: 100vh;
-    background-color: dodgerblue;
+    color: var(--zircon-50);
+    height: 100vh;
 
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
 
-    .App {
+    section {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        padding: 1rem 0.5rem;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
 
-    section {
         width: 100%;
         max-width: 420px;
         min-height: 400px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
+
         padding: 1rem;
         border-radius: 0.5rem;
-        background-color: rgba(0, 0, 0, 0.4);
+        
+        background: linear-gradient(180deg, var(--zircon-500) 0%, var(--zircon-600) 100%);
+        box-shadow: 0px 0px 70px rgba(0, 0, 0, 0.3);
     }
 
     form {
@@ -47,17 +31,13 @@
         padding-bottom: 1rem;
     }
 
-    a,
-    a:visited {
-        color: #fff;
+    a, a:visited{
+        color: var(--zircon-50);
     }
 
-    input[type="text"],
-    input[type="password"],
+    input,
     button,
     textarea {
-        font-family: 'Nunito', sans-serif;
-        font-size: 22px;
         padding: 0.25rem;
         border-radius: 0.5rem;
     }
@@ -73,12 +53,17 @@
 
     .instructions {
         font-size: 0.75rem;
-        border-radius: 0.5rem;
-        background: #000;
-        color: #fff;
+        color: var(--zircon-50);
+        
         padding: 0.25rem;
+        margin: 5px 0px 0px 0px;
+
         position: relative;
-        bottom: -10px;
+
+
+        border-radius: 0.5rem;
+        background: #00000069;
+
     }
 
     .instructions > svg {
@@ -87,7 +72,7 @@
 
     .offscreen {
         position: absolute;
-        left: -9999px;
+        visibility: hidden;
     }
 
     .hide {
