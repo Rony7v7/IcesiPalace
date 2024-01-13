@@ -1,11 +1,15 @@
 package com.equipodiscreto.IcesiPalace.Post;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.equipodiscreto.IcesiPalace.Dto.PostDTO;
+import com.equipodiscreto.IcesiPalace.FileSaver.FileSaverUtil;
 import com.equipodiscreto.IcesiPalace.Post.enums.Category;
 import com.equipodiscreto.IcesiPalace.Post.interfaces.PostServiceInterface;
 
@@ -16,21 +20,35 @@ import lombok.AllArgsConstructor;
 public class PostServiceImpl implements PostServiceInterface {
 
     private PostRepository postRepository;
+    private FileSaverUtil fileSaverUtil;
 
     @Override
     public PostMessage addPost(PostDTO postDTO) {
-        Post post = new Post(
-                postDTO.getTitle(),
-                postDTO.getDescription(),
-                postDTO.getUser_email(),
-                postDTO.getImage(),
-                LocalDateTime.now(),
-                Category.valueOf(postDTO.getCategory()));
-        postRepository.save(post);
-        return PostMessage.builder()
-                .posts(List.of(post))
-                .status(true)
-                .build();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Post post;
+        try {
+            post = new Post(
+                    postDTO.getTitle(),
+                    postDTO.getDescription(),
+                    auth.getName(),
+                    fileSaverUtil.uploadFile(postDTO.getImage()),
+                    LocalDateTime.now(),
+                    postDTO.getPrice(),
+                    Category.valueOf(postDTO.getCategory()));
+
+            postRepository.save(post);
+            return PostMessage.builder()
+                    .posts(List.of(post))
+                    .status(true)
+                    .build();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return PostMessage.builder()
+                    .status(false)
+                    .posts(null)
+                    .build();
+        }
+
     }
 
     @Override

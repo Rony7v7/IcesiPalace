@@ -1,6 +1,5 @@
 package com.equipodiscreto.IcesiPalace.JWT;
 
-import io.jsonwebtoken.io.Decoders;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 

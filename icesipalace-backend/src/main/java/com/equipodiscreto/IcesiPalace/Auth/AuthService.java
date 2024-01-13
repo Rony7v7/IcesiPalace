@@ -1,6 +1,5 @@
 package com.equipodiscreto.IcesiPalace.Auth;
 
-import org.springframework.cglib.core.Local;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;

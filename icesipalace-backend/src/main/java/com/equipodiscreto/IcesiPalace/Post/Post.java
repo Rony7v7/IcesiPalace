@@ -3,6 +3,7 @@ package com.equipodiscreto.IcesiPalace.Post;
 import java.time.LocalDateTime;
 
 import com.equipodiscreto.IcesiPalace.Post.enums.Category;
+import com.google.auto.value.AutoValue.Builder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "post")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Post {
     @Id
     @Column(name = "id")
@@ -46,12 +48,16 @@ public class Post {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    public Post(String title, String description, String user_id, String image, LocalDateTime created_at,
+    @Column(length = 255, name = "price")
+    private Double price;
+
+    public Post(String title, String description, String user_id, String image, LocalDateTime created_at, Double price,
             Category category) {
         this.title = title;
         this.description = description;
         this.userId = user_id;
         this.image = image;
+        this.price = price;
         this.created_at = created_at;
         this.category = category;
     }

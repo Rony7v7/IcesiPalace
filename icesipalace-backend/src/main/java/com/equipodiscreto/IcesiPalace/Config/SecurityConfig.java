@@ -19,27 +19,25 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SecurityConfig {
 
-    private final JWTAuthenticationFilter jwtAuthFilter;
-    private final AuthenticationProvider authProvider;
+        private final JWTAuthenticationFilter jwtAuthFilter;
+        private final AuthenticationProvider authProvider;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(crsf -> crsf.disable())
-                .authorizeHttpRequests(
-                        authRequest -> {
-                            authRequest
-                                    .requestMatchers(
-                                    "/auth/**")
-                                    .permitAll()
-                                    .requestMatchers(HttpMethod.GET).permitAll()
-                                    .anyRequest().authenticated();
-                        })
-                .sessionManagement(sessionManagement -> sessionManagement
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
-    }
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                return http
+                                .csrf(crsf -> crsf.disable())
+                                .authorizeHttpRequests(
+                                                authRequest -> {
+                                                        authRequest
+                                                                .requestMatchers("/auth/**")
+                                                                .permitAll()
+                                                                .anyRequest().authenticated();
+                                                })
+                                .sessionManagement(sessionManagement -> sessionManagement
+                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .authenticationProvider(authProvider)
+                                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                                .build();
+        }
 
 }

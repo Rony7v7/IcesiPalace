@@ -1,5 +1,7 @@
 package com.equipodiscreto.IcesiPalace.Dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,7 @@ public class PostDTO {
     private String title;
     private String description;
     private String user_email;
-    private String image;
+    private MultipartFile image;
+    private Double price;
     private String category;
 }
