@@ -10,10 +10,21 @@
 .nav-bar {
     display: flex;
     flex-direction: column;
+    
     width: 250px;
     min-height: auto;
-    background-color: #1a1a1a;
-    color: white;
+    padding: 5px;
+
+    color: var(--zircon-50);
+
+    border-radius: 0px 10px 10px 0px;
+    
+    /* bg gradient */
+    background: linear-gradient(180deg, var(--zircon-800) 0%, var(--zircon-900) 100%);
+
+    /* box shadow */
+    box-shadow: 0px 0px 70px rgba(0, 0, 0, 0.3);
+
 }
 
 .products-section {
@@ -21,7 +32,6 @@
     flex-direction: column;
 
     /* bg  */
-    background-color: #EEF2FF;
 }
 
 .products {
@@ -29,6 +39,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: start;
+    align-content: flex-start;
     min-width: 82vw;
     width: 90vw;
     height: 100%;

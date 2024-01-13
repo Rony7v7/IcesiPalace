@@ -1,3 +1,17 @@
+:root {
+  --zircon-50: #eef2ff;
+  --zircon-100: #e0e7ff;
+  --zircon-200: #c7d4fe;
+  --zircon-300: #a5b9fc;
+  --zircon-400: #819df8;
+  --zircon-500: #6384f1;
+  --zircon-600: #466be5;
+  --zircon-700: #385aca;
+  --zircon-800: #304ba3;
+  --zircon-900: #2e4281;
+  --zircon-950: #1b264b;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

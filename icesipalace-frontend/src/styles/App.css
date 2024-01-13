@@ -13,7 +13,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -37,5 +36,8 @@
 }
 
 .main-page {
-  height: 100vh;
+  height: auto;
+  width: 100vw;
+  color: var(--zircon-950);
+  background-color: var(--zircon-50);
 }
