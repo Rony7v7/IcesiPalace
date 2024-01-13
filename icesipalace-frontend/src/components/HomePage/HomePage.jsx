@@ -94,7 +94,7 @@ function HomePage() {
     return (
         <div className="home-page">
             <nav className="nav-bar">
-                <h1>MarketPlace</h1>
+                <span className="nav-bar-title">MarketPlace</span>
             </nav>
             <div className="products-section">
                 <div className="products-header">
