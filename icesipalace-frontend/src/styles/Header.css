@@ -1,3 +1,10 @@
 .header {
-    position: fixed;
+    display: flex;
+    position: sticky;
+    width: 100vw;
+
+    color: var(--zircon-50);
+    background-color: var(--zircon-800);
+
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
 }

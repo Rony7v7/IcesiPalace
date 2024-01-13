@@ -10,14 +10,14 @@ import {
 } from 'reactstrap';
 import "../styles/Header.css";
 
-function Header(args) {
+function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
   return (
     <div className=''>
-      <Navbar {...args}>
+      <Navbar className='header'>
         <NavbarBrand href="/">Icesi Palace</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
