@@ -1,7 +1,6 @@
 import "../../styles/HomePage/Product.css";
 
-function Product({id, name, price, image}) {
-    console.log(id, name, price, image);
+function Product({ id, name, price, image }) {
     return (
         <div className="product">
             <div className="product-image">

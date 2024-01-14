@@ -8,7 +8,7 @@ import '../styles/Register/register.css';
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /@.*\./;
-const REGISTER_URL = '/api/v1/user/save';
+const REGISTER_URL = '/auth/register';
 
 const Register = () => {
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import AuthService from '../services/AuthService';
 
-function Login () {
+function Login() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -16,26 +17,13 @@ function Login () {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Datos del formulario:', formData);
-
-    // Realizar la solicitud HTTP POST
-    fetch('http://localhost:8080/api/v1/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then(response => response.json())
-      .then(data => {
-        // Manejar la respuesta del servidor
-        console.log('Respuesta del servidor:', data);
+    const { email, password } = formData;
+    return AuthService.login(email, password)
+      .catch(err => {
+        console.log(err)
       })
-      .catch(error => {
-        // Manejar errores
-        console.error('Error en la solicitud:', error);
-      });
   };
- 
+
   return (
     <div className="login">
       <h1>Login</h1>
