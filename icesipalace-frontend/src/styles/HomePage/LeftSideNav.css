@@ -49,6 +49,12 @@ hr {
     border-top: 4px solid rgba(0, 28, 33);
 }
 
-.bottom-container{
-    justify-content: space-between;
+.categories {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: auto;
+}   
+
+.actions{
+    align-items: flex-end;
 }

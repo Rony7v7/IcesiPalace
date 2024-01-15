@@ -49,21 +49,26 @@ export default function LeftSideNav() {
                 <Input className="input" placeholder="Search" />
 
                 <hr />
-                <div className="bottom-container">
                     <div className="categories">
                         <NavItem>
-                            <NavLink href="#" className="category-title">Categories</NavLink>
+                            <h3>
+                                Categories
+                            </h3>
                         </NavItem>
                     </div>
 
 
                     <div className="actions">
-                       <NavItem>
+                        <NavItem>
                             <NavLink href="#" className="action-title">Settings</NavLink>
-                        </NavItem>  
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="#" className="action-title">Log out</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="#" className="action-title">Create POST  </NavLink>
+                        </NavItem>
                     </div>
-                </div>
-
             </Nav>
         </div>
     )
