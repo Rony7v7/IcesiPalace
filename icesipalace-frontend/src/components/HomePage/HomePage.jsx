@@ -2,6 +2,7 @@ import React from "react";
 import "../../styles/HomePage/HomePage.css";
 import Product from "./Product";
 import axios from "../../api/axios";
+import LeftSideNav from "./LeftSideNav";
 
 function HomePage() {
 
@@ -15,9 +16,7 @@ function HomePage() {
 
     return (
         <div className="home-page">
-            <nav className="nav-bar">
-                <span className="nav-bar-title">MarketPlace</span>
-            </nav>
+            <LeftSideNav />
             <div className="products-section">
                 <div className="products-header">
                     <span className="products-title">Sugerencias para ti</span>

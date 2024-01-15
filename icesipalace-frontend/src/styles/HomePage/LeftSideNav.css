@@ -1,0 +1,42 @@
+.main-container {
+    display: flex;
+}
+
+.nav-bar-title {
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+
+.user-container {
+    margin-top: 20px;
+}
+
+.user-image{
+    border-radius: 50%;
+    width: 50px;
+    height: auto;
+    margin : 0 5px 0 10px;
+}
+
+.user-title{
+   display: inline;
+   color: black;
+   font: 200;
+   font-size: larger; 
+}
+
+.user-title:hover{
+    color: black;
+}
+
+.input{
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 20px 0 0 0;
+}
