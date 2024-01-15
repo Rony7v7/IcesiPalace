@@ -48,7 +48,7 @@ export default function LeftSideNav() {
 
                 <Input className="input" placeholder="Search" />
 
-
+               <hr/>
 
             </Nav>
         </div>
