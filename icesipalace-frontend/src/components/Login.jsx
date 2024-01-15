@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import AuthService from '../services/AuthService';
+import { useNavigate } from "react-router-dom";
+
 
 function Login() {
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -16,12 +21,17 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Datos del formulario:', formData);
     const { email, password } = formData;
-    return AuthService.login(email, password)
-      .catch(err => {
-        console.log(err)
-      })
+    AuthService.login(email, password)
+      .then((response) => {
+        if (response.status === true) {
+          navigate("/");
+        }
+      }
+      )
+      .catch((err) => {
+        setError("Invalid credentials")
+      });
   };
 
   return (
@@ -37,6 +47,7 @@ function Login() {
           <input type="password" name="password" value={formData.password} onChange={handleChange} />
         </label>
         <input type="submit" value="Submit" />
+        {error && <div style={{ color: "red" }}>{error}</div>}
       </form>
     </div>
   );

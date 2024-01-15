@@ -1,6 +1,5 @@
 import axios from "../api/axios";
 
-
 const register = (username, email, password) => {
     return axios.post("/auth/register", {
         username,
@@ -13,15 +12,23 @@ const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user"));
 };
 
-const login = (username, password) => {
-    return axios.post("/auth/login", {
-        username,
+const login = (email, password) => {
+    return axios.post("http://localhost:8080/auth/login", {
+        email,
         password
     }).then((response) => {
-        if (response.data.token) {
-            localStorage.setItem("user", JSON.stringify(response.data))
+        if (response.status === 200) {
+
+            if (response.data.token && response.data.status) {
+                localStorage.setItem("user", JSON.stringify(response.data))
+                return response.data;
+            } else if (response.data.status === false) {
+                throw new Error("Error al iniciar sesión")
+            }
+
+        } else if (response.status === 401) {
+            throw new Error("Error al iniciar sesión")
         }
-        return response.data;
     })
 }
 
