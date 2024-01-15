@@ -45,13 +45,23 @@ public class AuthService {
     }
 
     public AuthResponse login(LoginDTO loginDTO) {
-        authManager.authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
-        UserDetails userDetails = userRepositoryl.findByEmail(loginDTO.getEmail()).orElseThrow();
-        String token = jwtService.getToken(userDetails);
-        return AuthResponse.builder()
-                .token(token)
-                .status(true)
-                .build();
+        try {
+
+            authManager
+                    .authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
+            UserDetails userDetails = userRepositoryl.findByEmail(loginDTO.getEmail()).orElseThrow();
+            String token = jwtService.getToken(userDetails);
+            return AuthResponse.builder()
+                    .token(token)
+                    .status(true)
+                    .build();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return AuthResponse.builder()
+                    .token(null)
+                    .status(false)
+                    .build();
+        }
     }
 
 }
