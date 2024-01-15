@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from '../api/axios';
+import AuthService from "../services/AuthService";
 import '../styles/Register/register.css';
 
 
@@ -110,36 +110,23 @@ const Register = () => {
             return;
         }
 
-        setSuccess(true);
+        AuthService.register(user, pwd, email)
+            .then(() => {
 
-        try {
-            const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ user, pwd , email}),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
-            console.log(response?.data);
-            console.log(response?.accessToken);
-            console.log(JSON.stringify(response))
-            setSuccess(true);
-            //clear state and controlled inputs
-            //need value attrib on inputs for this
-            setUser('');
-            setPwd('');
-            setMatchPwd('');
-            setEmail('');
-        } catch (err) {
-            if (!err?.response) {
-                setErrMsg('No Server Response');
-            } else if (err.response?.status === 409) {
-                setErrMsg('Username Taken');
-            } else {
-                setErrMsg('Registration Failed')
+                setSuccess(true);
+                //clear state and controlled inputs
+                //need value attrib on inputs for this
+                setUser('');
+                setPwd('');
+                setMatchPwd('');
+                setEmail('');
+
+            })
+            .catch((err) => {
+                setErrMsg('Email Alredy taken or Registration failed')
             }
-            errRef.current.focus();
-        }
+            );
+
     }
 
 
@@ -162,7 +149,7 @@ const Register = () => {
                     {/* This is the form that is submitted when the submit button is clicked 
                     The handleSubmit function is called when the form is submitted
                     */}
-                    <form onSubmit={handleSubmit}> 
+                    <form onSubmit={handleSubmit}>
 
                         <label htmlFor="username">
                             Username:
@@ -244,11 +231,11 @@ const Register = () => {
                             Must include uppercase and lowercase letters, a number and a special character.<br />
 
                             {/* This indicates the special characteres accepted */}
-                            Allowed special characters: 
-                            <span aria-label="exclamation mark">!</span> 
-                            <span aria-label="at symbol">@</span> 
-                            <span aria-label="hashtag">#</span> 
-                            <span aria-label="dollar sign">$</span> 
+                            Allowed special characters:
+                            <span aria-label="exclamation mark">!</span>
+                            <span aria-label="at symbol">@</span>
+                            <span aria-label="hashtag">#</span>
+                            <span aria-label="dollar sign">$</span>
                             <span aria-label="percent">%</span>
                         </p>
 
@@ -271,18 +258,18 @@ const Register = () => {
                             onFocus={() => setMatchFocus(true)}
                             onBlur={() => setMatchFocus(false)}
                         />
-                            
+
                         {/* This is the error message that is only visible when the input is in focus and the confirm password is invalid */}
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Must match the first password input field.
                         </p>
 
-                        {/* This is the submit button that is only enabled when the username, password and confirm password are valid */}    
-                        <button disabled={!validName || !validPwd || !validMatch  || !validEmail} type="submit">
+                        {/* This is the submit button that is only enabled when the username, password and confirm password are valid */}
+                        <button disabled={!validName || !validPwd || !validMatch || !validEmail} type="submit">
                             Sign Up
                         </button>
-                    
+
                     </form>
                     <p>
                         Already registered?<br />

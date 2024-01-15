@@ -1,19 +1,24 @@
 import axios from "../api/axios";
 
-const register = (username, email, password) => {
+const register = (username, password, email) => {
     return axios.post("/auth/register", {
         username,
         email,
         password,
-    });
-}
+    }).then((response) => {
+        if (response.data.status === false) {
+            throw new Error("Error al registrar usuario")
+        }
+    }).catch((error) => { throw new Error("Error al registrar usuario") })
+};
+
 
 const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user"));
 };
 
 const login = (email, password) => {
-    return axios.post("http://localhost:8080/auth/login", {
+    return axios.post("auth/login", {
         email,
         password
     }).then((response) => {
