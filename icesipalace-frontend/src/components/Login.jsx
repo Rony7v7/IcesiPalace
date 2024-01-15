@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import AuthService from '../services/AuthService';
 import { useNavigate } from "react-router-dom";
+import '../styles/Login/login.css';
+
 
 
 function Login() {
@@ -35,20 +37,32 @@ function Login() {
   };
 
   return (
-    <div className="login">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input type="text" name="email" value={formData.email} onChange={handleChange} />
-        </label>
-        <label>
-          Password:
-          <input type="password" name="password" value={formData.password} onChange={handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-        {error && <div style={{ color: "red" }}>{error}</div>}
-      </form>
+    <div className="Login">
+      <section>
+        <h1>Log in</h1>
+        <form onSubmit={handleSubmit}>
+          <input 
+            type="text" 
+            id="email" 
+            name="email" 
+            value={formData.email} 
+            onChange={handleChange} 
+            placeholder="Email"
+          />
+          <input 
+            type="password" 
+            name="password" 
+            value={formData.password} 
+            onChange={handleChange} 
+            placeholder="Password"
+          />
+          <input 
+            type="submit" 
+            value="Submit" 
+          />
+          {error && <div style={{ color: "red" }}>{error}</div>}
+        </form>
+      </section>
     </div>
   );
 }

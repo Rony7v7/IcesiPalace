@@ -1,0 +1,40 @@
+.Login {
+    color: var(--zircon-50);
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    section {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 420px;
+        min-height: 400px;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        background: linear-gradient(180deg, var(--zircon-500) 0%, var(--zircon-600) 100%);
+        box-shadow: 0px 0px 70px rgba(0, 0, 0, 0.3);
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        flex-grow: 1;
+        padding-bottom: 1rem;
+    }
+   
+    input,
+    textarea {
+        padding: 0.25rem;
+        border-radius: 0.5rem;
+    }
+
+    label {
+        margin-top: 1rem;
+        margin-bottom: 0.0 rem; /* Ajusta el valor según tus preferencias */
+    }
+    
+}
