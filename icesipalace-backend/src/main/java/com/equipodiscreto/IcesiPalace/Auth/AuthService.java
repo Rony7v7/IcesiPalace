@@ -5,6 +5,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.equipodiscreto.IcesiPalace.Dto.AuthResponse;
 import com.equipodiscreto.IcesiPalace.Dto.LoginDTO;
@@ -25,8 +26,10 @@ public class AuthService {
     private final AuthenticationManager authManager;
     private final PasswordEncoder passwordEncoder;
 
+    @Transactional
     public AuthResponse register(RegisterDTO registerDTO) {
         LocalDateTime date = LocalDateTime.now();
+        boolean exists = userRepositoryl.existsByEmail(registerDTO.getEmail());
         User user = User.builder()
                 .email(registerDTO.getEmail())
                 .password(passwordEncoder.encode(registerDTO.getPassword())) // Encrypt
@@ -34,14 +37,16 @@ public class AuthService {
                 .created_at(date)
                 .role(Role.USER)
                 .build();
+        Boolean status;
+        if (!exists) {
+            userRepositoryl.save(user);
+            status = true;
+        } else {
+            status = false;
 
-        User user1 = userRepositoryl.save(user);
-        Boolean status = user1 != null;
+        }
 
-        return AuthResponse.builder()
-                .token(null)
-                .status(status)
-                .build();
+        return AuthResponse.builder().status(status).build();
     }
 
     public AuthResponse login(LoginDTO loginDTO) {
