@@ -151,12 +151,6 @@ const Register = () => {
                     */}
                     <form onSubmit={handleSubmit}>
 
-                        <label htmlFor="username">
-                            Username:
-                            <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} /> {/* This is the check icon that is only visible when the username is valid */}
-                            <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} /> {/* This is the x icon that is only visible when the username is invalid */}
-                        </label>
-
                         <input
                             type="text"
                             id="username"
@@ -169,6 +163,8 @@ const Register = () => {
                             aria-describedby="uidnote" // This is the id of the error message that is only visible when the input is in focus and the username is invalid
                             onFocus={() => setUserFocus(true)} // This is the function that changes the state of the username input focus
                             onBlur={() => setUserFocus(false)} // This is the function that changes the state of the username input focus
+                            style={{ borderColor: validName || !user ? '' : 'red' }}
+                            placeholder="Username"
                         />
 
                         {/* This is the error message that is only visible when the input is in focus and the username is invalid */}
@@ -178,12 +174,6 @@ const Register = () => {
                             Must begin with a letter.<br />
                             Letters, numbers, underscores, hyphens allowed.
                         </p>
-
-                        <label htmlFor="email">
-                            Email:
-                            <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} /> {/* This is the check icon that is only visible when the username is valid */}
-                            <FontAwesomeIcon icon={faTimes} className={validEmail || !user ? "hide" : "invalid"} /> {/* This is the x icon that is only visible when the username is invalid */}
-                        </label>
 
                         <input
                             type="text"
@@ -197,19 +187,14 @@ const Register = () => {
                             aria-describedby="emailnote" // This is the id of the error message that is only visible when the input is in focus and the username is invalid
                             onFocus={() => setEmailFocus(true)} // This is the function that changes the state of the username input focus
                             onBlur={() => setEmailFocus(false)} // This is the function that changes the state of the username input focus
+                            style={{ borderColor: validEmail || !email ? '' : 'red' }}
+                            placeholder="Email"
                         />
 
                         <p id="emailnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Must contain an @ and a .<br />
                         </p>
-
-                        {/* This is the password label*/}
-                        <label htmlFor="password">
-                            Password:
-                            <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? "hide" : "invalid"} />
-                        </label>
 
                         {/* This is the password input field */}
                         <input
@@ -222,6 +207,8 @@ const Register = () => {
                             aria-describedby="pwdnote"
                             onFocus={() => setPwdFocus(true)}
                             onBlur={() => setPwdFocus(false)}
+                            style={{ borderColor: validPwd || !pwd ? '' : 'red' }}
+                            placeholder="Password"
                         />
 
                         {/* This is the error message that is only visible when the input is in focus and the password is invalid */}
@@ -239,12 +226,6 @@ const Register = () => {
                             <span aria-label="percent">%</span>
                         </p>
 
-                        {/* This is the confirm password label*/}
-                        <label htmlFor="confirm_pwd">
-                            Confirm Password:
-                            <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : "hide"} />
-                            <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? "hide" : "invalid"} />
-                        </label>
 
                         {/* This is the confirm password input field */}
                         <input
@@ -257,6 +238,8 @@ const Register = () => {
                             aria-describedby="confirmnote"
                             onFocus={() => setMatchFocus(true)}
                             onBlur={() => setMatchFocus(false)}
+                            style={{ borderColor: validMatch || !matchPwd  ? '' : 'red' }}
+                            placeholder="Confirm Password"
                         />
 
                         {/* This is the error message that is only visible when the input is in focus and the confirm password is invalid */}
