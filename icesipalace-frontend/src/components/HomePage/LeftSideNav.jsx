@@ -10,7 +10,6 @@ import {
 } from 'reactstrap';
 
 export default function LeftSideNav({onClick}) {
-    const [user, setUser] = React.useState({ name: "Dummy user" });
 
     const [currentUser, setCurrentUser] = useState(undefined);
 
@@ -18,7 +17,6 @@ export default function LeftSideNav({onClick}) {
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
-        console.log(user);
 
         if (user) {
             setCurrentUser(user);
@@ -40,7 +38,7 @@ export default function LeftSideNav({onClick}) {
 
                         <NavItem className="user-container">
                             <img src="https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png" alt="icono del usuario" className="user-image" />
-                            <NavLink href="#" className="user-title">{user.name}</NavLink>
+                            <NavLink href="#" className="user-title">{currentUser.username}</NavLink>
                         </NavItem>
 
                     ) : (

@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 import axios from "../api/axios";
 
 const register = (username, password, email) => {
@@ -14,7 +15,10 @@ const register = (username, password, email) => {
 
 
 const getCurrentUser = () => {
-    return JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = user.token;
+    const userDecoded = jwtDecode(token);
+    return userDecoded;
 };
 
 const login = (email, password) => {
