@@ -9,10 +9,12 @@ import {
     Input
 } from 'reactstrap';
 
-export default function LeftSideNav() {
+export default function LeftSideNav({onClick}) {
     const [user, setUser] = React.useState({ name: "Dummy user" });
 
     const [currentUser, setCurrentUser] = useState(undefined);
+
+
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
@@ -22,6 +24,8 @@ export default function LeftSideNav() {
             setCurrentUser(user);
         }
     }, []);
+
+
 
     return (
         <div className="main-container">
@@ -49,26 +53,26 @@ export default function LeftSideNav() {
                 <Input className="input" placeholder="Search" />
 
                 <hr />
-                    <div className="categories">
-                        <NavItem>
-                            <h3>
-                                Categories
-                            </h3>
-                        </NavItem>
-                    </div>
+                <div className="categories">
+                    <NavItem>
+                        <h3>
+                            Categories
+                        </h3>
+                    </NavItem>
+                </div>
 
 
-                    <div className="actions">
-                        <NavItem>
-                            <NavLink href="#" className="action-title">Settings</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="#" className="action-title">Log out</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="#" className="action-title">Create POST  </NavLink>
-                        </NavItem>
-                    </div>
+                <div className="actions">
+                    <NavItem>
+                        <NavLink href="#" className="action-title">Settings</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink href="#" className="action-title">Log out</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <button className="btn btn-outline-primary" onClick={onClick}> Create Post</button>
+                    </NavItem>
+                </div>
             </Nav>
         </div>
     )
