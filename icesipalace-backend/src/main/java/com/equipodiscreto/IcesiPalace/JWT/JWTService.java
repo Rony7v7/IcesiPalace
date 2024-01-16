@@ -21,7 +21,9 @@ public class JWTService {
     private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
     public String getToken(UserDetails user) {
-        return getToken(new HashMap<>(), user);
+        HashMap<String, Object> extraClaims = new HashMap<>();
+        extraClaims.put("username", user.getUsername());
+        return getToken(extraClaims, user);
     }
 
     private String getToken(HashMap<String, Object> extraClaims, UserDetails user) {
@@ -33,8 +35,6 @@ public class JWTService {
                 .signWith(SECRET_KEY, SignatureAlgorithm.HS512)
                 .compact();
     }
-
-
 
     public String getEmailFromToken(String token) {
         return getClaim(token, Claims::getSubject);
