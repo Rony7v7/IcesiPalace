@@ -65,9 +65,19 @@ public class PostServiceImpl implements PostServiceInterface {
     }
 
     @Override
-    public PostMessage updatePost() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updatePost'");
+    public PostMessage updatePost(Long id, PostDTO postDTO) {
+        Post post = postRepository.findById(id).get();
+        
+        post.setTitle(postDTO.getTitle());
+        post.setDescription(postDTO.getDescription());
+        post.setPrice(postDTO.getPrice());
+        post.setCategory(Category.valueOf(postDTO.getCategory()));
+        postRepository.save(post);
+        
+        return PostMessage.builder()
+                .posts(List.of(postRepository.findById(id).get()))
+                .status(true)
+                .build();
     }
 
     @Override

@@ -13,7 +13,7 @@ public interface PostServiceInterface {
 
     PostMessage deletePost();
 
-    PostMessage updatePost();
+    PostMessage updatePost(Long id, PostDTO postDTO);
 
     PostMessage getPosts();
 
