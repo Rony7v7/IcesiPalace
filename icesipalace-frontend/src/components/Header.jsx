@@ -25,22 +25,34 @@ function Header() {
 
   const toggle = () => setIsOpen(!isOpen);
 
+
+  const logOut = () => {
+    localStorage.removeItem("user");
+    window.location.reload();
+  }
+
   return (
     <div>
       <Navbar expand="md" className='header'>
         <NavbarBrand href="/">Icesi Palace</NavbarBrand>
         <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar className='d-flex justify-content-end'>
+        <Collapse isOpen={isOpen} navbar className='justify-content-end'>
           <Nav className="ml-auto" navbar>
             {
               currentUser ? (
-                <NavItem>
-                  <NavLink className="" href="/#">{currentUser.username}</NavLink>
-                </NavItem>
+                <>
+                  <NavItem>
+                    <NavLink className="" href="/#">{currentUser.username}</NavLink>
+                  </NavItem>
+
+                  <NavItem>
+                    <NavLink className="" href="/#" onClick={logOut}>Logout</NavLink>
+                  </NavItem>
+                </>
               ) : (
                 <>
                   <NavItem>
-                    <NavLink className="display-1" href="/login">Login</NavLink>
+                    <NavLink href="/login">Login</NavLink>
                   </NavItem>
                   <NavItem>
                     <NavLink href="/register">Register</NavLink>
