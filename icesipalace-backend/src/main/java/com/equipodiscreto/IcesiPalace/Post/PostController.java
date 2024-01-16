@@ -30,4 +30,10 @@ public class PostController {
                 .build();
         return ResponseEntity.ok(serverResponser);
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updatePost(@PathVariable("id") Long id, @ModelAttribute PostDTO postDTO) {
+        PostMessage serverResponser = postService.updatePost(id, postDTO);
+        return ResponseEntity.ok(serverResponser);
+    }
 }
