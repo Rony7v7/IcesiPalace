@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Collapse,
   Navbar,
@@ -10,7 +10,6 @@ import {
 } from 'reactstrap';
 import "../styles/Header.css";
 import AuthService from '../services/AuthService';
-import { useEffect } from 'react';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,29 +26,28 @@ function Header() {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div className=''>
-      <Navbar className='header'>
+    <div>
+      <Navbar expand="md" className='header'>
         <NavbarBrand href="/">Icesi Palace</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="me-auto" navbar>
-            {currentUser ? (
-              <>
+          <Nav className="ml-auto" navbar>
+            {
+              currentUser ? (
                 <NavItem>
-                  <NavLink href="#">{"Welcome"}</NavLink>
+                  <NavLink  href="/#">{currentUser.username}</NavLink>
                 </NavItem>
-                {/* Add other authenticated user links here */}
-              </>
-            ) : (
-              <>
-                <NavItem>
-                  <NavLink href="/login">Login</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href='/register'>Register</NavLink>
-                </NavItem>
-              </>
-            )}
+              ) : (
+                <>
+                  <NavItem>
+                    <NavLink href="/login">Login</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink href="/register">Register</NavLink>
+                  </NavItem>
+                </>
+              )
+            }
           </Nav>
         </Collapse>
       </Navbar>
