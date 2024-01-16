@@ -1,6 +1,5 @@
 package com.equipodiscreto.IcesiPalace.Post;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class PostServiceImpl implements PostServiceInterface {
                     .posts(List.of(post))
                     .status(true)
                     .build();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return PostMessage.builder()
                     .status(false)
