@@ -30,7 +30,7 @@ function Header() {
       <Navbar expand="md" className='header'>
         <NavbarBrand href="/">Icesi Palace</NavbarBrand>
         <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar className='d-flex justify-content-end'>
+        <Collapse isOpen={isOpen} navbar className='justify-content-end'>
           <Nav className="ml-auto" navbar>
             {
               currentUser ? (
@@ -40,7 +40,7 @@ function Header() {
               ) : (
                 <>
                   <NavItem>
-                    <NavLink className="display-1" href="/login">Login</NavLink>
+                    <NavLink href="/login">Login</NavLink>
                   </NavItem>
                   <NavItem>
                     <NavLink href="/register">Register</NavLink>

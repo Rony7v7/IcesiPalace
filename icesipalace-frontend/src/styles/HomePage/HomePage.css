@@ -7,27 +7,6 @@
 
 }
 
-.nav-bar {
-    display: flex;
-    flex-direction: column;
-    
-    width: 21em;
-    min-height: auto;
-    padding: 5px;
-
-    color: var(--zircon-50);
-
-    border-radius: 0px 10px 10px 0px;
-    
-    /* bg gradient */
-    background: linear-gradient(180deg, var(--zircon-600) 0%, var(--zircon-700) 100%);
-
-    /* box shadow */
-    box-shadow: 0px 0px 70px rgba(0, 0, 0, 0.3);
-}
-
-
-
 .products-section {
     display: flex;
     flex-direction: column;

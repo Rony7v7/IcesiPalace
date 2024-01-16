@@ -9,7 +9,7 @@ import {
     Input
 } from 'reactstrap';
 
-export default function LeftSideNav({onClick}) {
+export default function LeftSideNav({ onClick }) {
 
     const [currentUser, setCurrentUser] = useState(undefined);
 
@@ -31,11 +31,11 @@ export default function LeftSideNav({onClick}) {
 
 
     return (
-        <div className="main-container">
+        <div>
             <Nav className="nav-bar">
 
-                <NavItem>
-                    <span className="nav-bar-title">MARKET PALACE</span>
+                <NavItem className="nav-bar-title">
+                    <span>MARKET PALACE</span>
                 </NavItem>
 
                 {
@@ -47,12 +47,9 @@ export default function LeftSideNav({onClick}) {
                         </NavItem>
 
                     ) : (
-                        <NavItem className="user-container">
-
-                        </NavItem>
+                        ""
                     )
                 }
-
                 <Input className="input" placeholder="Search" />
 
                 <hr />
