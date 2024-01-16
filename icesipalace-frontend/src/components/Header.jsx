@@ -25,6 +25,12 @@ function Header() {
 
   const toggle = () => setIsOpen(!isOpen);
 
+
+  const logOut = () => {
+    localStorage.removeItem("user");
+    window.location.reload();
+  }
+
   return (
     <div>
       <Navbar expand="md" className='header'>
@@ -34,9 +40,15 @@ function Header() {
           <Nav className="ml-auto" navbar>
             {
               currentUser ? (
-                <NavItem>
-                  <NavLink className="" href="/#">{currentUser.username}</NavLink>
-                </NavItem>
+                <>
+                  <NavItem>
+                    <NavLink className="" href="/#">{currentUser.username}</NavLink>
+                  </NavItem>
+
+                  <NavItem>
+                    <NavLink className="" href="/#" onClick={logOut}>Logout</NavLink>
+                  </NavItem>
+                </>
               ) : (
                 <>
                   <NavItem>

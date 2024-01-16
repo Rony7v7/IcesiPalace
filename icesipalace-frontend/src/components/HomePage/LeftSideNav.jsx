@@ -23,10 +23,7 @@ export default function LeftSideNav({ onClick }) {
         }
     }, []);
 
-    const logOut = () => {
-        localStorage.removeItem("user");
-        window.location.reload();
-    }
+
 
 
 
@@ -64,13 +61,10 @@ export default function LeftSideNav({ onClick }) {
 
                 <div className="actions">
                     <NavItem>
-                        <NavLink href="#" className="action-title">Settings</NavLink>
+                        <NavLink href="#" className="btn btn-secondary">Settings</NavLink>
                     </NavItem>
                     <NavItem>
-                        <button className="btn btn-secondaty" onClick={logOut}>Log out</button>
-                    </NavItem>
-                    <NavItem>
-                        <button className="btn btn-outline-primary" onClick={onClick}> Create Post</button>
+                        <button className="btn btn-success" onClick={onClick}> Create Post</button>
                     </NavItem>
                 </div>
             </Nav>

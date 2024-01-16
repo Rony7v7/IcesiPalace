@@ -45,7 +45,7 @@ export default function CreatePostForm(props) {
         <div className="popup">
             <div className="popup-inner">
                 <div className="d-flex flex-row-reverse">
-                    <button className="btn btn-danger rounded-circle" onClick={() => props.setTrigger()}>Close</button>
+                    <button className="btn btn-danger rounded-circle" onClick={() => props.setTrigger()}>X</button>
                 </div>
                 <h1>Create Post</h1>
 
