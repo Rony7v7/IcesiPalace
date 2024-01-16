@@ -16,9 +16,14 @@ const register = (username, password, email) => {
 
 const getCurrentUser = () => {
     const user = JSON.parse(localStorage.getItem("user"));
-    const token = user.token;
-    const userDecoded = jwtDecode(token);
-    return userDecoded;
+    if(!user){
+        return
+    }else{
+
+        const token = user.token;
+        const userDecoded = jwtDecode(token);
+        return userDecoded;
+    }
 };
 
 const login = (email, password) => {
