@@ -30,17 +30,17 @@ function Header() {
       <Navbar expand="md" className='header'>
         <NavbarBrand href="/">Icesi Palace</NavbarBrand>
         <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
+        <Collapse isOpen={isOpen} navbar className='d-flex justify-content-end'>
           <Nav className="ml-auto" navbar>
             {
               currentUser ? (
                 <NavItem>
-                  <NavLink  href="/#">{currentUser.username}</NavLink>
+                  <NavLink className="" href="/#">{currentUser.username}</NavLink>
                 </NavItem>
               ) : (
                 <>
                   <NavItem>
-                    <NavLink href="/login">Login</NavLink>
+                    <NavLink className="display-1" href="/login">Login</NavLink>
                   </NavItem>
                   <NavItem>
                     <NavLink href="/register">Register</NavLink>
