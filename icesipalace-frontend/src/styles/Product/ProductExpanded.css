@@ -15,11 +15,15 @@
     padding: 32px;
     width: 100%;
     max-width: 640px;
-    background-color: #fff;
+    background-color: var(--zircon-50);
 
 }
 
 img {
     width: 100%;
     height: auto;
+}
+
+.category{
+    margin-top: auto;
 }
