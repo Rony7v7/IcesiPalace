@@ -11,25 +11,32 @@ export default function ProductExpanded(props) {
                 <div className="d-flex flex-row-reverse">
                     <button className="btn btn-danger rounded-circle" onClick={() => props.setTrigger()}>X</button>
                 </div>
-                <div className="product-expanded">
-                    <div className="product-expanded-image">
-                        <img src={props.product.image} alt="product" />
-                    </div>
-                    <div className="product-expanded-info">
-                        <div className="product-expanded-name">
-                            <span>{props.product.name}</span>
+                <div className="container text-center">
+
+                    <div className='row align-items-start'>
+
+                        <div className='col'>
+                            <div className="product-expanded-image">
+                                <img src={props.product.image} alt="product" />
+                            </div>
                         </div>
-                        <div className="product-expandend-userId">
-                            <span>{props.product.userId}</span>
-                        </div>
-                        <div className="product-expanded-price">
-                            <span>$ {props.product.price}</span>
-                        </div>
-                        <div className="product-expanded-description">
-                            <span>{props.product.description}</span>
-                        </div>
-                        <div className="product-expanded-category">
-                            <span>{props.product.category}</span>
+
+                        <div className='col'>
+                            <div className="product-expanded-name">
+                                <span>{props.product.name}</span>
+                            </div>
+                            <div className="product-expandend-userId">
+                                <span>{props.product.userId}</span>
+                            </div>
+                            <div className="product-expanded-price">
+                                <span>$ {props.product.price}</span>
+                            </div>
+                            <div className="product-expanded-description">
+                                <span>{props.product.description}</span>
+                            </div>
+                            <div className="product-expanded-category">
+                                <span>{props.product.category}</span>
+                            </div>
                         </div>
                     </div>
                 </div>

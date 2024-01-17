@@ -33,7 +33,7 @@ export default function LeftSideNav({ onClick, onSearchResult }) {
             setIsSearching(false);
             onSearchResult(posts);
         }
-        else{
+        else {
             const posts = await DataAccess.queryAllPosts();
             setIsSearching(false);
             onSearchResult(posts);
@@ -81,9 +81,18 @@ export default function LeftSideNav({ onClick, onSearchResult }) {
                     <NavItem>
                         <NavLink href="#" className="btn btn-secondary">Settings</NavLink>
                     </NavItem>
-                    <NavItem>
-                        <button className="btn btn-success" onClick={onClick}> Create Post</button>
-                    </NavItem>
+                    {
+                        AuthService.getCurrentUser() ? (
+
+                            <NavItem>
+                                <button className="btn btn-success" onClick={onClick}> Create Post</button>
+                            </NavItem>
+                        )
+                            :
+                            (
+                                ""
+                            )
+                    }
                 </div>
             </Nav>
         </div>
