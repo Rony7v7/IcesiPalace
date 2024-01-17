@@ -8,9 +8,13 @@ import CreatePostForm from "../CreatePostForm"
 function HomePage() {
 
     const [products, setProducts] = React.useState([]);
-
+    const [searchResults, setSearchResults] = React.useState([]);
 
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+
+    const handleSearch = (results) => {
+        setProducts(results)
+    }
 
     React.useEffect(() => {
         axios.get("/api/v1/post/list-all-post")
@@ -25,7 +29,7 @@ function HomePage() {
 
     return (
         <div className="home-page">
-            <LeftSideNav onClick={createPostForm} />
+            <LeftSideNav onClick={createPostForm} onSearchResult={handleSearch} />
             <div className="products-section">
                 <div className="products-header">
                     <span className="products-title">Sugerencias para ti</span>

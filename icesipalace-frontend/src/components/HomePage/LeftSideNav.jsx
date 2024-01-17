@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import AuthService from '../../services/AuthService';
 import "../../styles/HomePage/LeftSideNav.css";
 import { Nav, NavItem, NavLink, Input } from 'reactstrap';
+import DataAccess from "../../services/DataAccess";
 
-export default function LeftSideNav({ onClick }) {
+export default function LeftSideNav({ onClick, onSearchResult }) {
     const [currentUser, setCurrentUser] = useState(undefined);
     const [searchTerm, setSearchTerm] = useState("");
     const [isSearching, setIsSearching] = useState(false);
@@ -27,13 +28,10 @@ export default function LeftSideNav({ onClick }) {
         // Implement your database query logic here using the 'term'
         // This function will be called when the user presses Enter
         if (term.trim() !== "") {
-            console.log("Querying database with:", term);
-            // Perform your database query here
-
-            // Simulate an asynchronous operation (replace this with your actual async code)
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
+            const posts = await DataAccess.queryPostsBasedOnName(term)
+            console.log(posts);
             setIsSearching(false);
+            onSearchResult(posts);
         }
     };
 

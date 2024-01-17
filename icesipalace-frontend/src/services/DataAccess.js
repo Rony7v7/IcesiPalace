@@ -20,4 +20,12 @@ const createPost = (title, description, price, category, image) => {
         .catch((error) => { console.log(error) });
 };
 
-export default { createPost };
+const queryPostsBasedOnName = (name) => {
+    const data =  axios.get(`/api/v1/post/query?name=${name}`)
+    
+        .catch((error) => { console.log(error) });
+
+    return data.posts;
+};
+
+export default { createPost, queryPostsBasedOnName};
