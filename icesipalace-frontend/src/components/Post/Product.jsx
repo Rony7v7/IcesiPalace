@@ -1,8 +1,8 @@
-import "../../styles/HomePage/Product.css";
+import "../../styles/Product/Product.css";
 
-function Product({ id, name, price, image }) {
+function Product({ id, name, price, image, onClick }) {
     return (
-        <div className="product">
+        <div className="product" onClick={onClick}>
             <div className="product-image">
                 <img src={image} alt="product" />
             </div>

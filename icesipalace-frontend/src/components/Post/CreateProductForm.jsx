@@ -1,6 +1,6 @@
-import React , {useState} from "react";
-import "../styles/Post/CreatePostForm.css";
-import DataAcces from "../services/DataAccess";
+import React, { useState } from "react";
+import "../../styles/Product/CreatePostForm.css";
+import DataAcces from "../../services/DataAccess";
 
 export default function CreatePostForm(props) {
 
@@ -8,7 +8,7 @@ export default function CreatePostForm(props) {
     const [formData, setFormData] = useState({
         post_title: "",
         post_price: "",
-        category: "volvo", // Set default category if needed
+        category: "OTHER", // Set default category if needed
         post_description: "",
         post_image: null, // Use null for file input
     });
@@ -52,7 +52,7 @@ export default function CreatePostForm(props) {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group mt-3">
                         <label htmlFor="post-title">Title</label>
-                        <input name="post_title"  id="post-title" type="text" className="form-control" placeholder="Enter the Post title" onChange={handleChange} required />
+                        <input name="post_title" id="post-title" type="text" className="form-control" placeholder="Enter the Post title" onChange={handleChange} required />
                     </div>
                     <div className="form-group mt-3">
                         <label htmlFor="post-description" > Description</label>
@@ -76,7 +76,7 @@ export default function CreatePostForm(props) {
                     </div>
                     <div className="form-group mt-3 mb-3">
                         <label htmlFor="post-image">Image</label>
-                        <input name="post_image" id="post-image" type="file" className="form-control" onChange={handleImageChange}/>
+                        <input name="post_image" id="post-image" type="file" className="form-control" onChange={handleImageChange} />
                     </div>
                     <div className="d-flex justify-content-center mt-5">
                         <button id="submit" className="btn btn-success"> submit</button>

@@ -1,8 +1,8 @@
 import React from "react";
 import "../../styles/HomePage/HomePage.css";
-import Product from "./Product";
+import Product from "../Post/Product";
 import LeftSideNav from "./LeftSideNav";
-import CreatePostForm from "../CreatePostForm"
+import CreatePostForm from "../Post/CreateProductForm"
 import DataAccess from "../../services/DataAccess";
 
 function HomePage() {
@@ -18,7 +18,7 @@ function HomePage() {
 
     React.useEffect(() => {
         DataAccess.queryAllPosts().then((posts) => {
-            if(posts){
+            if (posts) {
                 setProducts(posts);
             }
         })
@@ -27,6 +27,10 @@ function HomePage() {
 
     const createPostForm = () => {
         setIsPopupOpen(!isPopupOpen);
+    }
+
+    const handlePostExpansion = () => {
+        console.log("expanded");
     }
 
     return (
@@ -39,7 +43,7 @@ function HomePage() {
                 <CreatePostForm trigger={isPopupOpen} setTrigger={createPostForm} />
                 <div className="products">
                     {products.map(product => (
-                        <Product key={product.id} {...product} />
+                        <Product key={product.id} onClick={handlePostExpansion}{...product} />
                     ))}
                 </div>
             </div>
