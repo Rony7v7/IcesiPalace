@@ -4,12 +4,12 @@ import Product from "../Post/Product";
 import LeftSideNav from "./LeftSideNav";
 import CreatePostForm from "../Post/CreateProductForm"
 import DataAccess from "../../services/DataAccess";
+import ProductExpanded from "../Post/ProductExpanded";
 
 function HomePage() {
 
     const [products, setProducts] = React.useState([]);
-    const [searchResults, setSearchResults] = React.useState([]);
-
+    const [isProductExpanded, setIsProductExpanded] = React.useState(false);
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
     const handleSearch = (results) => {
@@ -29,8 +29,8 @@ function HomePage() {
         setIsPopupOpen(!isPopupOpen);
     }
 
-    const handlePostExpansion = () => {
-        console.log("expanded");
+    const handleProductExpansion = () => {
+        setIsProductExpanded(!isProductExpanded);
     }
 
     return (
@@ -41,9 +41,10 @@ function HomePage() {
                     <span className="products-title">Sugerencias para ti</span>
                 </div>
                 <CreatePostForm trigger={isPopupOpen} setTrigger={createPostForm} />
+                <ProductExpanded trigger={isProductExpanded} setTrigger={handleProductExpansion} />
                 <div className="products">
                     {products.map(product => (
-                        <Product key={product.id} onClick={handlePostExpansion}{...product} />
+                        <Product key={product.id} onClick={handleProductExpansion}{...product} />
                     ))}
                 </div>
             </div>
