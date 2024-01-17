@@ -15,6 +15,12 @@ import lombok.AllArgsConstructor;
 public class PostController {
     private PostServiceInterface postService;
 
+    @GetMapping
+    public PostMessage getPost(@RequestParam("name") String name) {
+        PostMessage serverResponser = postService.getPostsByName(name);
+        return serverResponser;
+    }
+
     @PostMapping("/create")
     private ResponseEntity<?> createPost(@ModelAttribute PostDTO postDTO) {
         PostMessage serverResponser = postService.addPost(postDTO);

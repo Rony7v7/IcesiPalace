@@ -22,4 +22,6 @@ public interface PostServiceInterface {
     PostMessage getPostsByCategory();
 
     List<Post> listAllPost();
+
+    PostMessage getPostsByName(String name);
 }

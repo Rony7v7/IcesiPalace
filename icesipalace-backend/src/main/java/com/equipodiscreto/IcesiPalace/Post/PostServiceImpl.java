@@ -67,13 +67,13 @@ public class PostServiceImpl implements PostServiceInterface {
     @Override
     public PostMessage updatePost(Long id, PostDTO postDTO) {
         Post post = postRepository.findById(id).get();
-        
+
         post.setTitle(postDTO.getTitle());
         post.setDescription(postDTO.getDescription());
         post.setPrice(postDTO.getPrice());
         post.setCategory(Category.valueOf(postDTO.getCategory()));
         postRepository.save(post);
-        
+
         return PostMessage.builder()
                 .posts(List.of(postRepository.findById(id).get()))
                 .status(true)
@@ -101,6 +101,21 @@ public class PostServiceImpl implements PostServiceInterface {
     @Override
     public List<Post> listAllPost() {
         return postRepository.findAll();
+    }
+
+    @Override
+    public PostMessage getPostsByName(String name) {
+        if (name == null || name.isEmpty()) {
+
+            return PostMessage.builder()
+                    .posts(postRepository.findAll())
+                    .status(true)
+                    .build();
+        }
+        return PostMessage.builder()
+                .posts(postRepository.findByTitleContaining(name))
+                .status(true)
+                .build();
     }
 
 }
