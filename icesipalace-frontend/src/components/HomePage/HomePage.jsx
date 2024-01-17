@@ -11,6 +11,7 @@ function HomePage() {
     const [products, setProducts] = React.useState([]);
     const [isProductExpanded, setIsProductExpanded] = React.useState(false);
     const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+    const [productInExpansion, setProductInExpansion] = React.useState([{}]);
 
     const handleSearch = (results) => {
         setProducts(results)
@@ -19,6 +20,7 @@ function HomePage() {
     React.useEffect(() => {
         DataAccess.queryAllPosts().then((posts) => {
             if (posts) {
+                console.log(posts);
                 setProducts(posts);
             }
         })
@@ -29,7 +31,8 @@ function HomePage() {
         setIsPopupOpen(!isPopupOpen);
     }
 
-    const handleProductExpansion = () => {
+    const handleProductExpansion = (name, description, price,category, userId ,image) => {
+        setProductInExpansion({ name, description, price,category, userId ,image });
         setIsProductExpanded(!isProductExpanded);
     }
 
@@ -41,7 +44,7 @@ function HomePage() {
                     <span className="products-title">Sugerencias para ti</span>
                 </div>
                 <CreatePostForm trigger={isPopupOpen} setTrigger={createPostForm} />
-                <ProductExpanded trigger={isProductExpanded} setTrigger={handleProductExpansion} />
+                <ProductExpanded trigger={isProductExpanded} setTrigger={handleProductExpansion} product={productInExpansion} />
                 <div className="products">
                     {products.map(product => (
                         <Product key={product.id} onClick={handleProductExpansion}{...product} />

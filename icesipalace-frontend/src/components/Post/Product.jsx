@@ -1,17 +1,22 @@
 import "../../styles/Product/Product.css";
 
-function Product({ id, name, price, image, onClick }) {
+function Product(props) {
+
+    const handleClick = () => {
+        props.onClick(props.title, props.description, props.price, props.category,props.userId , props.image);
+    }
+
     return (
-        <div className="product" onClick={onClick}>
+        <div className="product" onClick={handleClick}>
             <div className="product-image">
-                <img src={image} alt="product" />
+                <img src={props.image} alt="product" />
             </div>
             <div className="product-info">
                 <div className="product-name">
-                    <span>{name}</span>
+                    <span>{props.title}</span>
                 </div>
                 <div className="product-price">
-                    <span>$ {price}</span>
+                    <span>$ {props.price}</span>
                 </div>
 
             </div>

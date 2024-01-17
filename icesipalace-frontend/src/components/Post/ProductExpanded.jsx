@@ -13,20 +13,23 @@ export default function ProductExpanded(props) {
                 </div>
                 <div className="product-expanded">
                     <div className="product-expanded-image">
-                        <img src={props.image} alt="product" />
+                        <img src={props.product.image} alt="product" />
                     </div>
                     <div className="product-expanded-info">
                         <div className="product-expanded-name">
-                            <span>{props.name}</span>
+                            <span>{props.product.name}</span>
+                        </div>
+                        <div className="product-expandend-userId">
+                            <span>{props.product.userId}</span>
                         </div>
                         <div className="product-expanded-price">
-                            <span>$ {props.price}</span>
+                            <span>$ {props.product.price}</span>
                         </div>
                         <div className="product-expanded-description">
-                            <span>{props.description}</span>
+                            <span>{props.product.description}</span>
                         </div>
                         <div className="product-expanded-category">
-                            <span>{props.category}</span>
+                            <span>{props.product.category}</span>
                         </div>
                     </div>
                 </div>
