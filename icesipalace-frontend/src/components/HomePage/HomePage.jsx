@@ -1,9 +1,9 @@
 import React from "react";
 import "../../styles/HomePage/HomePage.css";
 import Product from "./Product";
-import axios from "../../api/axios";
 import LeftSideNav from "./LeftSideNav";
 import CreatePostForm from "../CreatePostForm"
+import DataAccess from "../../services/DataAccess";
 
 function HomePage() {
 
@@ -17,9 +17,11 @@ function HomePage() {
     }
 
     React.useEffect(() => {
-        axios.get("/api/v1/post/list-all-post")
-            .then((response) => setProducts(response.data.posts))
-            .catch((err) => console.log(err));
+        DataAccess.queryAllPosts().then((posts) => {
+            if(posts){
+                setProducts(posts);
+            }
+        })
     }, []);
 
 

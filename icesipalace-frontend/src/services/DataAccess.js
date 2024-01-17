@@ -20,12 +20,21 @@ const createPost = (title, description, price, category, image) => {
         .catch((error) => { console.log(error) });
 };
 
-const queryPostsBasedOnName = (name) => {
-    const data =  axios.get(`/api/v1/post/query?name=${name}`)
-    
+const queryPostsBasedOnName = async (name) => {
+    const serverResponse = await axios.get(`/api/v1/post?name=${name}`)
         .catch((error) => { console.log(error) });
 
-    return data.posts;
+
+    return serverResponse.data.posts;
 };
 
-export default { createPost, queryPostsBasedOnName};
+const queryAllPosts = async () => {
+
+    return await axios.get("/api/v1/post/list-all-post")
+        .then((response) => {
+            return response.data.posts;
+        })
+        .catch((err) => console.log(err));
+}
+
+export default { createPost, queryPostsBasedOnName, queryAllPosts };

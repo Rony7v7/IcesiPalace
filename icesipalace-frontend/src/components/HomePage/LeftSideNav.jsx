@@ -33,6 +33,11 @@ export default function LeftSideNav({ onClick, onSearchResult }) {
             setIsSearching(false);
             onSearchResult(posts);
         }
+        else{
+            const posts = await DataAccess.queryAllPosts();
+            setIsSearching(false);
+            onSearchResult(posts);
+        }
     };
 
     const onChangeSearch = (e) => {
