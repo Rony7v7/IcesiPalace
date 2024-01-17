@@ -38,6 +38,8 @@ export default function CreatePostForm(props) {
             .catch((err) => {
                 console.log(err);
             });
+        props.setTrigger();
+        window.location.reload();
     }
 
 
