@@ -35,7 +35,6 @@ function Header() {
     <div>
       <Navbar expand="md" className='header'>
         <NavbarBrand href="/">Icesi Palace</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar className='justify-content-end'>
           <Nav className="ml-auto" navbar>
             {

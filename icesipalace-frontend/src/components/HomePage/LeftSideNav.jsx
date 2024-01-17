@@ -68,12 +68,22 @@ export default function LeftSideNav({ onClick, onSearchResult }) {
                     ""
                 )}
 
-                <Input className="input" placeholder="Search" onChange={onChangeSearch} onKeyPress={onKeyPressSearch} />
+                <NavItem className="search-container">
+                    <Input
+                        type="text"
+                        name="search"
+                        id="search"
+                        placeholder="Buscar..."
+                        className="search-input"
+                        onChange={onChangeSearch}
+                        onKeyPress={onKeyPressSearch}
+                    />
+                </NavItem>
 
                 <hr />
                 <div className="categories">
-                    <NavItem>
-                        <h3>Categories</h3>
+                    <NavItem className="nav-bar-subtitle">
+                        <span>Categorias</span>
                     </NavItem>
                 </div>
 
