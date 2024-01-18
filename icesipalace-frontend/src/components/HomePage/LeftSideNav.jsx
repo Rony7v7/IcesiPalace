@@ -8,6 +8,7 @@ export default function LeftSideNav({ onClick, onSearchResult }) {
     const [currentUser, setCurrentUser] = useState(undefined);
     const [searchTerm, setSearchTerm] = useState("");
     const [isSearching, setIsSearching] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState(null);
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
@@ -52,6 +53,13 @@ export default function LeftSideNav({ onClick, onSearchResult }) {
         }
     };
 
+
+    const onCategoryClick = async (category) => {
+        setSelectedCategory(category);
+        const posts = await DataAccess.queryPostsBasedOnCategory(category);
+        onSearchResult(posts);
+    }
+
     return (
         <div>
             <Nav className="nav-bar">
@@ -83,8 +91,16 @@ export default function LeftSideNav({ onClick, onSearchResult }) {
                 <hr />
                 <div className="categories">
                     <NavItem className="nav-bar-subtitle">
-                        <span>Categorias</span>
+                        <span>Categories</span>
                     </NavItem>
+                    <div>
+                        <NavItem>
+                            <NavLink href="#" onClick={() => onCategoryClick("Category A")}>Categoria A</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="#" onClick={() => onCategoryClick("Category B")}>Categoria B</NavLink>
+                        </NavItem>
+                    </div>
                 </div>
 
                 <div className="actions">

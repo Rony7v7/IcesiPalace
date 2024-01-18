@@ -28,6 +28,16 @@ const queryPostsBasedOnName = async (name) => {
     return serverResponse.data.posts;
 };
 
+const queryPostsBasedOnCategory = async (category) => {
+    try {
+        const response = await axios.get(`/api/v1/post?category=${category}`);
+        return response.data.posts;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+};
+
 const queryAllPosts = async () => {
 
     return await axios.get("/api/v1/post/list-all-post")

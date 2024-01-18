@@ -68,10 +68,8 @@ export default function CreatePostForm(props) {
                             <label htmlFor="dropdownMenuButton">Category</label>
                             <div id="dropdownMenyButton">
                                 <select name="category" id="dropDownSelect" className="form-select" onChange={handleChange} required>
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="OTHER">OTHER</option>
+                                    <option value="Category A">Category A</option>
+                                    <option value="Category B">Category B</option>
                                 </select> {/*TODO: Add categories */}
                             </div>
                         </div>
