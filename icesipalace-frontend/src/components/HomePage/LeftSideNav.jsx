@@ -95,10 +95,10 @@ export default function LeftSideNav({ onClick, onSearchResult }) {
                     </NavItem>
                     <div>
                         <NavItem>
-                            <NavLink href="#" onClick={() => onCategoryClick("Category A")}>Categoria A</NavLink>
+                            <NavLink href="#" onClick={() => onCategoryClick("Category A")}>Category A</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="#" onClick={() => onCategoryClick("Category B")}>Categoria B</NavLink>
+                            <NavLink href="#" onClick={() => onCategoryClick("Category B")}>Category B</NavLink>
                         </NavItem>
                     </div>
                 </div>
