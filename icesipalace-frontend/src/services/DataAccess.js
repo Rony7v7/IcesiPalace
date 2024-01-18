@@ -47,4 +47,4 @@ const queryAllPosts = async () => {
         .catch((err) => console.log(err));
 }
 
-export default { createPost, queryPostsBasedOnName, queryAllPosts };
+export default { createPost, queryPostsBasedOnName, queryPostsBasedOnCategory, queryAllPosts };
