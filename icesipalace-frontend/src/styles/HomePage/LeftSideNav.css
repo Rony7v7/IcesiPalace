@@ -4,6 +4,7 @@
     
     width: 18em;
     min-height: 100vh;
+    height: 100%;
     padding: 5px;
 
     color: var(--zircon-50);

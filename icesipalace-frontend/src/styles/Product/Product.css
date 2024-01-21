@@ -1,6 +1,7 @@
 .product {
 	display: flex;
 	flex-direction: column;
+	box-sizing: border-box;
 	align-items: start;
 	justify-content: center;
 	width: 200px;

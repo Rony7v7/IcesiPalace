@@ -66,6 +66,19 @@ export default function LeftSideNav({ onClick, onSearchResult }) {
                 <NavItem className="nav-bar-title">
                     <span>MARKET PALACE</span>
                 </NavItem>
+                
+                {
+                        AuthService.getCurrentUser() ? (
+
+                            <NavItem className="search-container">
+                                <button className="btn btn-success w-100 " onClick={onClick}>Create Post</button>
+                            </NavItem>
+                        )
+                            :
+                            (
+                                ""
+                            )
+                }
 
                 {currentUser ? (
                     <NavItem className="user-container">
@@ -107,18 +120,7 @@ export default function LeftSideNav({ onClick, onSearchResult }) {
                     <NavItem>
                         <NavLink href="#" className="btn btn-secondary">Settings</NavLink>
                     </NavItem>
-                    {
-                        AuthService.getCurrentUser() ? (
 
-                            <NavItem>
-                                <button className="btn btn-success" onClick={onClick}> Create Post</button>
-                            </NavItem>
-                        )
-                            :
-                            (
-                                ""
-                            )
-                    }
                 </div>
             </Nav>
         </div>
