@@ -70,6 +70,7 @@ export default function CreatePostForm(props) {
                                 <select name="category" id="dropDownSelect" className="form-select" onChange={handleChange} required>
                                     <option value="Category A">Category A</option>
                                     <option value="Category B">Category B</option>
+                                    <option value="OTHER">asdasfS</option>
                                 </select> {/*TODO: Add categories */}
                             </div>
                         </div>
@@ -79,7 +80,7 @@ export default function CreatePostForm(props) {
                         <input name="post_image" id="post-image" type="file" className="form-control" onChange={handleImageChange} />
                     </div>
                     <div className="d-flex justify-content-center mt-5">
-                        <button id="submit" className="btn btn-success"> submit</button>
+                        <button id="submit" className="btn btn-success">Submit</button>
                     </div>
                 </form>
             </div>

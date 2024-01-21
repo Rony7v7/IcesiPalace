@@ -66,18 +66,18 @@ export default function LeftSideNav({ onClick, onSearchResult }) {
                 <NavItem className="nav-bar-title">
                     <span>MARKET PALACE</span>
                 </NavItem>
-                
-                {
-                        AuthService.getCurrentUser() ? (
 
-                            <NavItem className="search-container">
-                                <button className="btn btn-success w-100 " onClick={onClick}>Create Post</button>
-                            </NavItem>
+                {
+                    AuthService.getCurrentUser() ? (
+
+                        <NavItem className="search-container">
+                            <button className="btn-create-product" onClick={onClick}>Create Post</button>
+                        </NavItem>
+                    )
+                        :
+                        (
+                            ""
                         )
-                            :
-                            (
-                                ""
-                            )
                 }
 
                 {currentUser ? (
