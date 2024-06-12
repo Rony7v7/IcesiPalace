@@ -39,7 +39,7 @@ Throughout the development of IcesiPalace, our team gained valuable experience i
 2. **Navigate to the Project Directory:**
 
     ```bash
-    cd IcesiPalace
+    cd IcesiPalace\icesipalace-frontend\
     ```
 
 3. **Install Dependencies:**
@@ -51,7 +51,6 @@ Throughout the development of IcesiPalace, our team gained valuable experience i
 4. **Start the Front-end Server:**
 
     ```bash
-    cd ./icesipalace-frontend
     npm start
     ```
 
